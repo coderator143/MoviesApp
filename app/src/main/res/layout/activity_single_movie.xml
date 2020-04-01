@@ -4,6 +4,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#ff8000"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/home"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="18dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -54,26 +64,32 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Movie"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/lucida_sans_unicode"
-                        android:textSize="18sp"/>
+                        android:textColor="#8b0000"
+                        android:fontFamily="@font/bahnschrift"
+                        android:textSize="26sp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/movie_tagline"
-                        android:fontFamily="@font/lucida_sans_unicode"
+                        android:fontFamily="@font/bahnschrift"
                         android:text="Subtitle"
-                        android:textSize="14sp"
-                        android:textStyle="bold"/>
+                        android:textSize="20sp"
+                        android:layout_marginBottom="16dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#c0c0c0"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Movie info"
+                        android:fontFamily="@font/bahnschrift"
+                        android:textColor="#006400"
                         android:layout_marginTop="16dp"
-                        android:textSize="14sp"
-                        android:textStyle="bold"/>
+                        android:textSize="22sp" />
                     
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -85,8 +101,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Release date: "
-                            android:textSize="12sp"
-                            android:fontFamily="@font/lucida_sans_unicode"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/bahnschrift"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -95,8 +111,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="2019"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/lucida_sans_unicode" />
+                            android:textSize="18sp"
+                            android:fontFamily="@font/bahnschrift" />
                         
                     </LinearLayout>
 
@@ -110,8 +126,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Rating: "
-                            android:textSize="12sp"
-                            android:fontFamily="@font/lucida_sans_unicode"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/bahnschrift"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -120,35 +136,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="8.0"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/lucida_sans_unicode" />
+                            android:textSize="18sp"
+                            android:fontFamily="@font/bahnschrift" />
 
                     </LinearLayout>
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:orientation="horizontal">-->
-
-<!--                        <TextView-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="2dp"-->
-<!--                            android:text="Runtime: "-->
-<!--                            android:textSize="12sp"-->
-<!--                            android:fontFamily="@font/lucida_sans_unicode"-->
-<!--                            android:textStyle="bold"/>-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/movie_runtime"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginTop="2dp"-->
-<!--                            android:text="2.3hr"-->
-<!--                            android:textSize="12sp"-->
-<!--                            android:fontFamily="@font/lucida_sans_unicode" />-->
-
-<!--                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -160,8 +151,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Budget: "
-                            android:textSize="12sp"
-                            android:fontFamily="@font/lucida_sans_unicode"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/bahnschrift"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -170,23 +161,24 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="$130,000"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/lucida_sans_unicode" />
+                            android:textSize="18sp"
+                            android:fontFamily="@font/bahnschrift" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="16dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Revenue: "
-                            android:textSize="12sp"
-                            android:fontFamily="@font/lucida_sans_unicode"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/bahnschrift"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -195,19 +187,24 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="$260,000"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/lucida_sans_unicode" />
+                            android:textSize="18sp"
+                            android:fontFamily="@font/bahnschrift" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#c0c0c0"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="16dp"
                         android:text="Overview"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/lucida_sans_unicode"
-                        android:textStyle="bold"/>
+                        android:textSize="22sp"
+                        android:textColor="#006400"
+                        android:fontFamily="@font/bahnschrift" />
 
                     <TextView
                         android:id="@+id/movie_overview"
@@ -215,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:text="overview ............"
-                        android:textSize="12sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/bahnschrift" />
 
 

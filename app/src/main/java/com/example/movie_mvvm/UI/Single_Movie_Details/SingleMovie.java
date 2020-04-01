@@ -20,6 +20,7 @@ import com.example.movie_mvvm.Data.Repository.NetworkState;
 import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
 import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.Utilities.Constants;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -33,6 +34,7 @@ public class SingleMovie extends AppCompatActivity {
     movie_budget, movie_revenue;
     ImageView movie_poster;
     ProgressBar progressBar;
+    FloatingActionButton home;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,12 +45,12 @@ public class SingleMovie extends AppCompatActivity {
         movie_tagline=findViewById(R.id.movie_tagline);
         movie_release_date=findViewById(R.id.movie_release_date);
         movie_rating=findViewById(R.id.movie_rating);
-        //movie_runtime=findViewById(R.id.movie_runtime);
         movie_overview=findViewById(R.id.movie_overview);
         movie_budget=findViewById(R.id.movie_budget);
         movie_revenue=findViewById(R.id.movie_revenue);
         movie_poster=findViewById(R.id.iv_movie_poster);
         progressBar=findViewById(R.id.progress_bar);
+        home=findViewById(R.id.fab_home);
 
         //int movieId=getParentActivityIntent().getIntExtra("id",1);
         int movieId=getIntent().getIntExtra("id", 1);
@@ -91,6 +93,13 @@ public class SingleMovie extends AppCompatActivity {
         Glide.with(this)
                 .load(moviePosterURL)
                 .into(movie_poster);
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private SingleMovieViewModel getViewModel(final int movieId) {

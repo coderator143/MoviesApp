@@ -22,6 +22,7 @@ import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.UI.PopularMovie.MovieFragmentViewModel;
 import com.example.movie_mvvm.UI.PopularMovie.MoviePagedListRepository;
 import com.example.movie_mvvm.UI.PopularMovie.PopularMoviePagedListAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
