@@ -15,10 +15,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.movie_mvvm.Data.API.TheMovieDBClient;
-import com.example.movie_mvvm.Data.API.TheMovieDBInterface;
+import com.example.movie_mvvm.Data.API.APIService;
 import com.example.movie_mvvm.Data.Repository.NetworkState;
-import com.example.movie_mvvm.Data.VO.MovieDetails;
+import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
 import com.example.movie_mvvm.R;
+import com.example.movie_mvvm.Utilities.Constants;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -52,7 +53,7 @@ public class SingleMovie extends AppCompatActivity {
         //int movieId=getParentActivityIntent().getIntExtra("id",1);
         int movieId=getIntent().getIntExtra("id", 1);
 
-        TheMovieDBInterface apiService= new TheMovieDBClient().getClient();
+        APIService apiService= new TheMovieDBClient().getClient();
         movieDetailsRepository = new MovieDetailsRepository(apiService);
         viewModel=getViewModel(movieId);
 
@@ -86,7 +87,7 @@ public class SingleMovie extends AppCompatActivity {
         movie_budget.setText(formatCurrency.format(movieDetails.get_movie_budget()));
         movie_revenue.setText(formatCurrency.format(movieDetails.get_movie_revenue()));
 
-        String moviePosterURL = TheMovieDBClient.POSTER_BASE_URL + movieDetails.get_movie_poster_path();
+        String moviePosterURL = Constants.POSTER_BASE_URL + movieDetails.get_movie_poster_path();
         Glide.with(this)
                 .load(moviePosterURL)
                 .into(movie_poster);

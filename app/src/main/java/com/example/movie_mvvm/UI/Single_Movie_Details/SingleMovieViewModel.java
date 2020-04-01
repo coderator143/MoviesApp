@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.movie_mvvm.Data.Repository.NetworkState;
-import com.example.movie_mvvm.Data.VO.MovieDetails;
+import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
 
 import io.reactivex.disposables.CompositeDisposable;
 

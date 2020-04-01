@@ -1,12 +1,9 @@
-package com.example.movie_mvvm.Data.VO;
+package com.example.movie_mvvm.Data.VO.Movies;
 
-import androidx.lifecycle.LiveData;
-
+import com.example.movie_mvvm.Data.VO.Movies.Movie;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
-import javax.xml.transform.Result;
 
 public class MovieResponse {
 

@@ -1,4 +1,4 @@
-package com.example.movie_mvvm.UI.PopularMovie;
+package com.example.movie_mvvm.UI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,21 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.movie_mvvm.Data.API.TheMovieDBClient;
-import com.example.movie_mvvm.Data.API.TheMovieDBInterface;
+import com.example.movie_mvvm.Data.API.APIService;
 import com.example.movie_mvvm.Data.Repository.NetworkState;
-import com.example.movie_mvvm.Data.VO.Movie;
+import com.example.movie_mvvm.Data.VO.Movies.Movie;
 import com.example.movie_mvvm.R;
-
-import org.w3c.dom.Text;
+import com.example.movie_mvvm.UI.PopularMovie.MovieFragmentViewModel;
+import com.example.movie_mvvm.UI.PopularMovie.MoviePagedListRepository;
+import com.example.movie_mvvm.UI.PopularMovie.PopularMoviePagedListAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MainActivityViewModel viewModel;
+    private MovieFragmentViewModel viewModel;
     MoviePagedListRepository movieRepository;
     RecyclerView rv_movie_list;
     TextView error_msg;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TheMovieDBInterface apiService = new TheMovieDBClient().getClient();
+        APIService apiService = new TheMovieDBClient().getClient();
         movieRepository=new MoviePagedListRepository(apiService);
         viewModel=getViewModel();
 
@@ -79,13 +79,13 @@ public class MainActivity extends AppCompatActivity {
         rv_movie_list.setAdapter(movieAdapter);
     }
 
-    private MainActivityViewModel getViewModel() {
+    private MovieFragmentViewModel getViewModel() {
         return new ViewModelProvider(this, new ViewModelProvider.Factory() {
             @NonNull
             @Override
             public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-                return (T) new MainActivityViewModel(movieRepository);
+                return (T) new MovieFragmentViewModel(movieRepository);
             }
-        }).get(MainActivityViewModel.class);
+        }).get(MovieFragmentViewModel.class);
     }
 }

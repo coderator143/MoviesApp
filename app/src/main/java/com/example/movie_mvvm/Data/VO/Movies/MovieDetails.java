@@ -1,4 +1,4 @@
-package com.example.movie_mvvm.Data.VO;
+package com.example.movie_mvvm.Data.VO.Movies;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,4 +1,4 @@
-package com.example.movie_mvvm.Data.Repository;
+package com.example.movie_mvvm.Data.Repository.MovieRepositories;
 
 import android.util.Log;
 
@@ -7,10 +7,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.paging.PageKeyedDataSource;
 
-import com.example.movie_mvvm.Data.API.TheMovieDBClient;
-import com.example.movie_mvvm.Data.API.TheMovieDBInterface;
-import com.example.movie_mvvm.Data.VO.Movie;
-import com.example.movie_mvvm.Data.VO.MovieResponse;
+import com.example.movie_mvvm.Data.API.APIService;
+import com.example.movie_mvvm.Data.Repository.NetworkState;
+import com.example.movie_mvvm.Data.VO.Movies.Movie;
+import com.example.movie_mvvm.Data.VO.Movies.MovieResponse;
+import com.example.movie_mvvm.Utilities.Constants;
 
 import java.util.Objects;
 
@@ -20,12 +21,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
 
-    private TheMovieDBInterface apiService;
+    private APIService apiService;
     private CompositeDisposable compositeDisposable;
-    private int page= TheMovieDBClient.FIRST_PAGE;
+    private int page= Constants.FIRST_PAGE;
     public MutableLiveData<NetworkState> networkState=new MutableLiveData<>();
 
-    public MovieDataSource(TheMovieDBInterface apiService, CompositeDisposable compositeDisposable) {
+    public MovieDataSource(APIService apiService, CompositeDisposable compositeDisposable) {
         this.apiService=apiService;
         this.compositeDisposable=compositeDisposable;
     }

@@ -2,19 +2,19 @@ package com.example.movie_mvvm.UI.Single_Movie_Details;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.movie_mvvm.Data.API.TheMovieDBInterface;
-import com.example.movie_mvvm.Data.Repository.MovieDetailsNetworkDataSource;
+import com.example.movie_mvvm.Data.API.APIService;
+import com.example.movie_mvvm.Data.Repository.MovieRepositories.MovieDetailsNetworkDataSource;
 import com.example.movie_mvvm.Data.Repository.NetworkState;
-import com.example.movie_mvvm.Data.VO.MovieDetails;
+import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
 
 import io.reactivex.disposables.CompositeDisposable;
 
 public class MovieDetailsRepository {
 
-    private TheMovieDBInterface apiService;
+    private APIService apiService;
     private MovieDetailsNetworkDataSource movieDetailsNetworkDataSource;
 
-    public MovieDetailsRepository(TheMovieDBInterface apiService) {
+    public MovieDetailsRepository(APIService apiService) {
         this.apiService=apiService;
     }
 

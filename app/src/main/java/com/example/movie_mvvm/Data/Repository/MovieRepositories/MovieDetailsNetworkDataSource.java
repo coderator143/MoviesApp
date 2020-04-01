@@ -1,12 +1,13 @@
-package com.example.movie_mvvm.Data.Repository;
+package com.example.movie_mvvm.Data.Repository.MovieRepositories;
 
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.movie_mvvm.Data.API.TheMovieDBInterface;
-import com.example.movie_mvvm.Data.VO.MovieDetails;
+import com.example.movie_mvvm.Data.API.APIService;
+import com.example.movie_mvvm.Data.Repository.NetworkState;
+import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
 
 import java.util.Objects;
 
@@ -16,12 +17,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MovieDetailsNetworkDataSource {
 
-    private TheMovieDBInterface apiService;
+    private APIService apiService;
     private CompositeDisposable compositeDisposable;
     private MutableLiveData<NetworkState> _networkState=new MutableLiveData<NetworkState>();
     private MutableLiveData<MovieDetails> _downloadedMovieDetailsResponse = new MutableLiveData<MovieDetails>();
 
-    public MovieDetailsNetworkDataSource(TheMovieDBInterface apiService, CompositeDisposable compositeDisposable) {
+    public MovieDetailsNetworkDataSource(APIService apiService, CompositeDisposable compositeDisposable) {
         this.apiService=apiService;
         this.compositeDisposable=compositeDisposable;
     }

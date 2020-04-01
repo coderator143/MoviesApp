@@ -1,5 +1,7 @@
 package com.example.movie_mvvm.Data.API;
 
+import com.example.movie_mvvm.Utilities.Constants;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -14,20 +16,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TheMovieDBClient {
 
-    private static final String API_KEY="5bdd7f40c40addb963f95f92684bfa34";
-    private static final String BASE_URL="https://api.themoviedb.org/3/";
-    public static final String POSTER_BASE_URL="https://image.tmdb.org/t/p/w342";
-    public static final int FIRST_PAGE=1;
-    public static final int POST_PER_PAGE=20;
-
-    public TheMovieDBInterface getClient() {
+    public APIService getClient() {
         Interceptor requestIntercceptor=new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 HttpUrl url=chain.request()
                         .url()
                         .newBuilder()
-                        .addQueryParameter("api_key", API_KEY)
+                        .addQueryParameter("api_key", Constants.API_KEY)
                         .build();
 
                 Request request=chain.request()
@@ -46,10 +42,10 @@ public class TheMovieDBClient {
 
         return new Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl(BASE_URL)
+                .baseUrl(Constants.BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(TheMovieDBInterface.class);
+                .create(APIService.class);
     }
 }
