@@ -12,17 +12,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.movie_mvvm.Data.API.TheMovieDBClient;
 import com.example.movie_mvvm.Data.API.APIService;
 import com.example.movie_mvvm.Data.Repository.NetworkState;
+import com.example.movie_mvvm.Data.VO.Movies.MovieCast;
 import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
 import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.Utilities.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
 
 public class SingleMovie extends AppCompatActivity {
@@ -30,11 +34,12 @@ public class SingleMovie extends AppCompatActivity {
     private SingleMovieViewModel viewModel;
     private MovieDetailsRepository movieDetailsRepository;
 
-    TextView movie_title, movie_tagline, movie_release_date, movie_rating, movie_runtime, movie_overview,
+    TextView movie_title, movie_tagline, movie_release_date, movie_rating, movie_overview,
     movie_budget, movie_revenue;
     ImageView movie_poster;
     ProgressBar progressBar;
     FloatingActionButton home;
+    RecyclerView cast_rv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,8 +56,12 @@ public class SingleMovie extends AppCompatActivity {
         movie_poster=findViewById(R.id.iv_movie_poster);
         progressBar=findViewById(R.id.progress_bar);
         home=findViewById(R.id.fab_home);
+        cast_rv=findViewById(R.id.rv_cast_list);
 
-        //int movieId=getParentActivityIntent().getIntExtra("id",1);
+        CastListAdapter castListAdapter=new CastListAdapter(this);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+                false);
+
         int movieId=getIntent().getIntExtra("id", 1);
 
         APIService apiService= new TheMovieDBClient().getClient();
@@ -66,6 +75,13 @@ public class SingleMovie extends AppCompatActivity {
             }
         });
 
+        viewModel.movieCast.observe(this, new Observer<List<MovieCast>>() {
+            @Override
+            public void onChanged(List<MovieCast> movieCasts) {
+                castListAdapter.submitList(movieCasts);
+            }
+        });
+
         viewModel.networkState.observe(this, new Observer<NetworkState>() {
             @Override
             public void onChanged(NetworkState networkState) {
@@ -75,6 +91,10 @@ public class SingleMovie extends AppCompatActivity {
                 else progressBar.setVisibility(View.GONE);
             }
         });
+
+        cast_rv.setLayoutManager(layoutManager);
+        cast_rv.setHasFixedSize(true);
+        cast_rv.setAdapter(castListAdapter);
     }
 
     private void bindUI(MovieDetails movieDetails) {

@@ -73,9 +73,30 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/movie_tagline"
                         android:fontFamily="@font/bahnschrift"
-                        android:text="Subtitle"
+                        android:text="No tagline here XD"
                         android:textSize="20sp"
                         android:layout_marginBottom="16dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#c0c0c0"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Movie Cast"
+                        android:fontFamily="@font/bahnschrift"
+                        android:textColor="#006400"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
+                        android:textSize="22sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_cast_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -135,7 +156,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="8.0"
+                            android:text="No rating given XD"
                             android:textSize="18sp"
                             android:fontFamily="@font/bahnschrift" />
 
@@ -160,7 +181,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="$130,000"
+                            android:text="Don't know XD"
                             android:textSize="18sp"
                             android:fontFamily="@font/bahnschrift" />
 
@@ -186,7 +207,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="$260,000"
+                            android:text="Don't know XD"
                             android:textSize="18sp"
                             android:fontFamily="@font/bahnschrift" />
 
@@ -211,7 +232,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="overview ............"
+                        android:text="Do watch it. The directors definitely worked hard."
                         android:textSize="18sp"
                         android:fontFamily="@font/bahnschrift" />
 

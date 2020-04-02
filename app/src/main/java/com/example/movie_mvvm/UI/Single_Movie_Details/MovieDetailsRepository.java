@@ -5,7 +5,10 @@ import androidx.lifecycle.LiveData;
 import com.example.movie_mvvm.Data.API.APIService;
 import com.example.movie_mvvm.Data.Repository.MovieRepositories.MovieDetailsNetworkDataSource;
 import com.example.movie_mvvm.Data.Repository.NetworkState;
+import com.example.movie_mvvm.Data.VO.Movies.MovieCast;
 import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
+
+import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -22,6 +25,12 @@ public class MovieDetailsRepository {
         movieDetailsNetworkDataSource=new MovieDetailsNetworkDataSource(apiService, compositeDisposable);
         movieDetailsNetworkDataSource.fetch_movie_details(movieId);
         return movieDetailsNetworkDataSource.get_DownloadedMovieDetailsResponse();
+    }
+
+    LiveData<List<MovieCast>> fetchingSingleMovieCast(CompositeDisposable compositeDisposable, int movieId) {
+        movieDetailsNetworkDataSource=new MovieDetailsNetworkDataSource(apiService, compositeDisposable);
+        movieDetailsNetworkDataSource.fetch_movie_cast(movieId);
+        return movieDetailsNetworkDataSource.get_DownloadedMovieCastResponse();
     }
 
     LiveData<NetworkState> getMovieDetailNetworkState() {

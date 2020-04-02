@@ -1,5 +1,6 @@
 package com.example.movie_mvvm.Data.API;
 
+import com.example.movie_mvvm.Data.VO.Movies.MovieCredits;
 import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
 import com.example.movie_mvvm.Data.VO.Movies.MovieResponse;
 
@@ -15,4 +16,7 @@ public interface APIService {
 
     @GET("movie/{movie_id}")
     Single<MovieDetails> get_movie_details(@Path("movie_id") int id);
+
+    @GET("movie/{movie_id}/credits")
+    Single<MovieCredits> get_movie_credits(@Path("movie_id") int id);
 }

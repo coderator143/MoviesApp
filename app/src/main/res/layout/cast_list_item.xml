@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="180dp"
+    android:id="@+id/card_view"
+    android:foreground="?selectableItemBackground"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="8dp"
+    android:focusable="true"
+    android:clickable="true" >
+
+    <LinearLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/cv_iv_cast"
+            android:layout_width="180dp"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/character"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/cv_tv_cast_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="2dp"
+            android:text="Cast Name"
+            android:fontFamily="@font/lucida_sans_unicode"
+            android:textSize="14sp"
+            android:textColor="#000"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/cv_tv_cast_character"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="Character"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

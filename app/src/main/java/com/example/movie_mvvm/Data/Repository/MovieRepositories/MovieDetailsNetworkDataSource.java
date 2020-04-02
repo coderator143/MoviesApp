@@ -7,8 +7,11 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.movie_mvvm.Data.API.APIService;
 import com.example.movie_mvvm.Data.Repository.NetworkState;
+import com.example.movie_mvvm.Data.VO.Movies.MovieCast;
+import com.example.movie_mvvm.Data.VO.Movies.MovieCredits;
 import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
 
+import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -21,6 +24,7 @@ public class MovieDetailsNetworkDataSource {
     private CompositeDisposable compositeDisposable;
     private MutableLiveData<NetworkState> _networkState=new MutableLiveData<NetworkState>();
     private MutableLiveData<MovieDetails> _downloadedMovieDetailsResponse = new MutableLiveData<MovieDetails>();
+    private MutableLiveData<List<MovieCast>> _downloadedMovieCastResponse = new MutableLiveData<>();
 
     public MovieDetailsNetworkDataSource(APIService apiService, CompositeDisposable compositeDisposable) {
         this.apiService=apiService;
@@ -30,6 +34,8 @@ public class MovieDetailsNetworkDataSource {
     public LiveData<NetworkState> get_NetworkState() { return _networkState; }
 
     public LiveData<MovieDetails> get_DownloadedMovieDetailsResponse() { return _downloadedMovieDetailsResponse; }
+
+    public LiveData<List<MovieCast>> get_DownloadedMovieCastResponse() { return _downloadedMovieCastResponse;}
 
     public void fetch_movie_details(int movieID) {
         _networkState.postValue(NetworkState.Companion.LOADING);
@@ -47,6 +53,30 @@ public class MovieDetailsNetworkDataSource {
                         @Override
                         public void onError(Throwable e) {
                             _networkState.postValue(NetworkState.Companion.ERROR);
+                            Log.e("MovieDetailDataSource", Objects.requireNonNull(e.toString()));
+                        }
+                    })
+            );
+        } catch (Exception e) {
+            Log.e("MovieDetailDataSource",e.toString());
+        }
+    }
+
+    public void fetch_movie_cast(int movieID) {
+        _networkState.postValue(NetworkState.Companion.LOADING);
+        try {
+            compositeDisposable.add(
+                    apiService.get_movie_credits(movieID)
+                    .subscribeOn(Schedulers.io())
+                    .subscribeWith(new DisposableSingleObserver<MovieCredits>() {
+                        @Override
+                        public void onSuccess(MovieCredits movieCredits) {
+                            _downloadedMovieCastResponse.postValue(movieCredits.getMovieCast());
+                            Log.d("cast1", "success");
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
                             Log.e("MovieDetailDataSource", Objects.requireNonNull(e.toString()));
                         }
                     })
