@@ -22,10 +22,12 @@ import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.UI.Single_Movie_Details.SingleMovie;
 import com.example.movie_mvvm.Utilities.Constants;
 
+import java.util.Objects;
+
 public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, RecyclerView.ViewHolder> {
 
     public int MOVIE_VIEW_TYPE=1;
-    public int NETWORK_VIEW_TYPE=2;
+    private int NETWORK_VIEW_TYPE=2;
     private Context context;
     private NetworkState networkState=null;
 
@@ -52,7 +54,7 @@ public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, Recycl
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(getItemViewType(position)==MOVIE_VIEW_TYPE) {
-            ((MovieItemViewHolder) holder).bind(getItem(position), context);
+            ((MovieItemViewHolder) holder).bind(Objects.requireNonNull(getItem(position)), context);
         }
         else {
             ((NetorkStateViewItemHolder) holder).bind(networkState);
@@ -90,19 +92,19 @@ public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, Recycl
             }
         };
 
-    class MovieItemViewHolder extends RecyclerView.ViewHolder {
+    static class MovieItemViewHolder extends RecyclerView.ViewHolder {
 
         TextView movie_title, movie_release_date;
         ImageView movie_poster;
 
-        public MovieItemViewHolder(@NonNull View itemView) {
+        MovieItemViewHolder(@NonNull View itemView) {
             super(itemView);
             movie_title=itemView.findViewById(R.id.cv_movie_title);
             movie_release_date=itemView.findViewById(R.id.cv_movie_release_date);
             movie_poster=itemView.findViewById(R.id.cv_iv_image_view);
         }
 
-        public void bind(Movie movie, Context context) {
+        void bind(Movie movie, Context context) {
             movie_title.setText(movie.get_title());
             movie_release_date.setText(movie.get_release_date());
 
@@ -111,29 +113,26 @@ public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, Recycl
                     .load(moviePosterURL)
                     .into(movie_poster);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(context, SingleMovie.class);
-                    intent.putExtra("id", movie.get_id());
-                    context.startActivity(intent);
-                }
+            itemView.setOnClickListener(v -> {
+                Intent intent=new Intent(context, SingleMovie.class);
+                intent.putExtra("id", movie.get_id());
+                context.startActivity(intent);
             });
         }
     }
 
-    class NetorkStateViewItemHolder extends RecyclerView.ViewHolder {
+    static class NetorkStateViewItemHolder extends RecyclerView.ViewHolder {
 
         TextView error_message;
         ProgressBar progressBar;
 
-        public NetorkStateViewItemHolder(@NonNull View itemView) {
+        NetorkStateViewItemHolder(@NonNull View itemView) {
             super(itemView);
             error_message=itemView.findViewById(R.id.error_msg_item);
             progressBar=itemView.findViewById(R.id.progress_bar_item);
         }
 
-        public void bind(NetworkState networkState) {
+        void bind(NetworkState networkState) {
             if(networkState!=null && networkState==NetworkState.Companion.LOADING) progressBar.setVisibility(View.VISIBLE);
             else progressBar.setVisibility(View.GONE);
 

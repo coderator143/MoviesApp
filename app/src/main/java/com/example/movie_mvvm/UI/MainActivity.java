@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.view.View;
@@ -26,10 +27,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SwipeRefreshLayout swipeRefreshLayout;
     private MovieFragmentViewModel viewModel;
     MoviePagedListRepository movieRepository;
     RecyclerView rv_movie_list;
     TextView error_msg;
+    PopularMoviePagedListAdapter movieAdapter;
     ProgressBar prog_bar;
 
     @Override
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         movieRepository=new MoviePagedListRepository(apiService);
         viewModel=getViewModel();
 
-        PopularMoviePagedListAdapter movieAdapter=new PopularMoviePagedListAdapter(this);
+        movieAdapter=new PopularMoviePagedListAdapter(this);
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this, 3);
 
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -52,10 +55,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        viewModel.moviePagedList.observe(this, new Observer<PagedList<Movie>>() {
+        create_movies_list();
+
+        swipeRefreshLayout=findViewById(R.id.sr_movie_list);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onChanged(PagedList<Movie> movies) {
-                movieAdapter.submitList(movies);
+            public void onRefresh() {
+                create_movies_list();
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
 
@@ -88,5 +95,14 @@ public class MainActivity extends AppCompatActivity {
                 return (T) new MovieFragmentViewModel(movieRepository);
             }
         }).get(MovieFragmentViewModel.class);
+    }
+
+    public void create_movies_list() {
+        viewModel.moviePagedList.observe(this, new Observer<PagedList<Movie>>() {
+            @Override
+            public void onChanged(PagedList<Movie> movies) {
+                movieAdapter.submitList(movies);
+            }
+        });
     }
 }
