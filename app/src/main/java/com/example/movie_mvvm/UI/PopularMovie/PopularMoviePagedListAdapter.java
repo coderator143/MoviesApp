@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -54,6 +56,8 @@ public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, Recycl
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(getItemViewType(position)==MOVIE_VIEW_TYPE) {
+            ((MovieItemViewHolder) holder).itemView.setAnimation(AnimationUtils.loadAnimation(context,
+                    R.anim.down_to_up));
             ((MovieItemViewHolder) holder).bind(Objects.requireNonNull(getItem(position)), context);
         }
         else {

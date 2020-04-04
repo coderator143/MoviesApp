@@ -27,31 +27,20 @@
             android:fontFamily="@font/bahnschrift"
             android:visibility="gone"/>
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_home"
-                android:background="#8b0000"
-                app:title="Home"
-                app:titleTextColor="#fff"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/sr_movie_list"
+            android:layout_width="match_parent"
+            android:layout_margin="4dp"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_movie_list"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"/>
 
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/pager"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 
