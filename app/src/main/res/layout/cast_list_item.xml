@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/cv_iv_cast"
             android:layout_width="180dp"
-            android:layout_height="220dp"
+            android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@drawable/character"
             android:layout_gravity="center"/>
@@ -32,7 +32,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginStart="2dp"
             android:text="Cast Name"
-            android:fontFamily="@font/lucida_sans_unicode"
+            android:fontFamily="@font/montserrat_extra_bold"
             android:textSize="14sp"
             android:textColor="#000"
             android:maxLines="1"
@@ -43,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:fontFamily="@font/open_sans_regular"
             android:layout_marginBottom="4dp"
             android:text="Character"
             android:textSize="14sp"/>

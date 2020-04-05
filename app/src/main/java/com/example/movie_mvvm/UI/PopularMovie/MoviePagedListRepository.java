@@ -7,7 +7,6 @@ import androidx.paging.PagedList;
 import com.example.movie_mvvm.Data.API.APIService;
 import com.example.movie_mvvm.Data.Repository.MovieRepositories.MovieDataSource;
 import com.example.movie_mvvm.Data.Repository.MovieRepositories.MovieDataSourceFactory;
-import com.example.movie_mvvm.Data.Repository.NetworkState;
 import com.example.movie_mvvm.Data.VO.Movies.Movie;
 import com.example.movie_mvvm.Utilities.Constants;
 
@@ -34,9 +33,5 @@ public class MoviePagedListRepository {
 
         moviePagedList=new LivePagedListBuilder<>(moviesDataSourceFactory, config).build();
         return moviePagedList;
-    }
-
-    LiveData<NetworkState> getNetworkState() {
-        return movieDataSource.get_NetworkState();
     }
 }

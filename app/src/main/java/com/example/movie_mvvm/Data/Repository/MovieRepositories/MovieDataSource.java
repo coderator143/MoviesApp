@@ -1,6 +1,7 @@
 package com.example.movie_mvvm.Data.Repository.MovieRepositories;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -8,10 +9,12 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.paging.PageKeyedDataSource;
 
 import com.example.movie_mvvm.Data.API.APIService;
-import com.example.movie_mvvm.Data.Repository.NetworkState;
 import com.example.movie_mvvm.Data.VO.Movies.Movie;
 import com.example.movie_mvvm.Data.VO.Movies.MovieResponse;
+import com.example.movie_mvvm.UI.MainActivity;
+import com.example.movie_mvvm.UI.PopularMovie.MovieFragment;
 import com.example.movie_mvvm.Utilities.Constants;
+import com.example.movie_mvvm.Utilities.MyApplication;
 
 import java.util.Objects;
 
@@ -24,35 +27,29 @@ public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
     private APIService apiService;
     private CompositeDisposable compositeDisposable;
     private int page= Constants.FIRST_PAGE;
-    public MutableLiveData<NetworkState> networkState=new MutableLiveData<>();
 
     public MovieDataSource(APIService apiService, CompositeDisposable compositeDisposable) {
         this.apiService=apiService;
         this.compositeDisposable=compositeDisposable;
     }
 
-    public LiveData<NetworkState> get_NetworkState() { return networkState; }
-
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull LoadInitialCallback<Integer, Movie> callback) {
-        networkState.postValue(NetworkState.Companion.LOADING);
         compositeDisposable.add(
-                apiService.get_popular_movie(page)
-                        .subscribeOn(Schedulers.io())
-                        .subscribeWith(new DisposableSingleObserver<MovieResponse>() {
-                            @Override
-                            public void onSuccess(MovieResponse movieResponse) {
-                                callback.onResult(movieResponse.get_results(), null, page+1);
-                                networkState.postValue(NetworkState.Companion.LOADED);
-                                Log.d("abcd", "Success");
-                            }
+            apiService.get_popular_movie(page)
+                .subscribeOn(Schedulers.io())
+                .subscribeWith(new DisposableSingleObserver<MovieResponse>() {
+                    @Override
+                    public void onSuccess(MovieResponse movieResponse) {
+                        callback.onResult(movieResponse.get_results(), null, page+1);
+                        Log.d("Connection", "Connected");
+                    }
 
-                            @Override
-                            public void onError(Throwable e) {
-                                networkState.postValue(NetworkState.Companion.ERROR);
-                                Log.e("MovieDetailDataSource", Objects.requireNonNull(e.toString()));
-                            }
-                        })
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("Connection", "Disconnected-load-initial");
+                    }
+                })
         );
     }
 
@@ -63,7 +60,6 @@ public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
 
     @Override
     public void loadAfter(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Movie> callback) {
-        networkState.postValue(NetworkState.Companion.LOADING);
         compositeDisposable.add(
                 apiService.get_popular_movie(params.key)
                         .subscribeOn(Schedulers.io())
@@ -72,16 +68,16 @@ public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
                             public void onSuccess(MovieResponse movieResponse) {
                                 if(movieResponse.get_total_pages() >= params.key) {
                                     callback.onResult(movieResponse.get_results(), params.key+1);
-                                    networkState.postValue(NetworkState.Companion.LOADED);
+                                    Log.d("Connection", "Connected");
                                 }
                                 else {
-                                    networkState.postValue(NetworkState.Companion.ENDOFLIST);
+                                    Log.d("Connection", "End of list");
                                 }
                             }
 
                             @Override
                             public void onError(Throwable e) {
-                                networkState.postValue(NetworkState.Companion.ERROR);
+                                Log.d("Connection", "Disconnected-load-after");
                                 Log.e("MovieDetailDataSource", Objects.requireNonNull(e.toString()));
                             }
                         })

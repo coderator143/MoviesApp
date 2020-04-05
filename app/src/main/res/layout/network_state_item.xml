@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Error messeage"
-        android:fontFamily="@font/lucida_sans_unicode"/>
+        android:fontFamily="@font/open_sans_regular"/>
     
     <ProgressBar
         android:id="@+id/progress_bar_item"

@@ -31,7 +31,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginStart="2dp"
             android:text="Movie"
-            android:fontFamily="@font/lucida_sans_unicode"
+            android:fontFamily="@font/montserrat_extra_bold"
             android:textSize="14sp"
             android:textColor="#000"
             android:maxLines="1"
@@ -44,6 +44,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
             android:text="2019"
+            android:fontFamily="@font/open_sans_regular"
             android:maxLength="4"
             android:textSize="14sp"/>
 

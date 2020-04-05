@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="cast1" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Connection" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Firebase" />
   </component>
@@ -22,13 +22,28 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Data/Repository/MovieRepositories/MovieDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Data/Repository/MovieRepositories/MovieDataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Data/Repository/MovieRepositories/MovieDetailsNetworkDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Data/Repository/MovieRepositories/MovieDetailsNetworkDataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Data/Repository/NetworkState.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/PopularMovie/MovieFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/PopularMovie/MovieFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/PopularMovie/MovieFragmentViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/PopularMovie/MovieFragmentViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/PopularMovie/MoviePagedListRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/PopularMovie/MoviePagedListRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/PopularMovie/PopularMoviePagedListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/PopularMovie/PopularMoviePagedListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/PopularTVShow/TVShowFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/PopularTVShow/TVShowFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/Single_Movie_Details/MovieDetailsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/Single_Movie_Details/MovieDetailsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/Single_Movie_Details/SingleMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/Single_Movie_Details/SingleMovie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/Single_Movie_Details/SingleMovieViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/UI/Single_Movie_Details/SingleMovieViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Utilities/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Utilities/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/font/bahnschrift.TTF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/font/lucida_sans_unicode.ttf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_single_movie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_single_movie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/cast_list_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/cast_list_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_movie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_movie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/movie_list_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/movie_list_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/network_state_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/network_state_item.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,9 +68,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -70,16 +85,16 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/font" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Shantanu\AndroidStudioProjects\Movie_MVVM\app\src\main\res\font" />
       <recent name="C:\Users\Shantanu\AndroidStudioProjects\Movie_MVVM\app\src\main\res\drawable" />
       <recent name="C:\Users\Shantanu\AndroidStudioProjects\Movie_MVVM\app\src\main\res" />
       <recent name="C:\Users\Shantanu\AndroidStudioProjects\Movie_MVVM\app\src\main\res\drawable-v24" />
-      <recent name="C:\Users\Shantanu\AndroidStudioProjects\Movie_MVVM\app\src\main\res\font" />
     </key>
   </component>
   <component name="RunDashboard">

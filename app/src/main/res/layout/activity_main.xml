@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="Connection problem!!"
-            android:fontFamily="@font/bahnschrift"
+            android:fontFamily="@font/open_sans_regular"
             android:visibility="gone"/>
 
         <com.google.android.material.appbar.AppBarLayout

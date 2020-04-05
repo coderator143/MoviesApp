@@ -18,8 +18,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.movie_mvvm.Data.API.APIService;
 import com.example.movie_mvvm.Data.API.TheMovieDBClient;
-import com.example.movie_mvvm.Data.Repository.NetworkState;
 import com.example.movie_mvvm.R;
+
 
 public class MovieFragment extends Fragment {
 
@@ -63,15 +63,6 @@ public class MovieFragment extends Fragment {
         error_msg=v.findViewById(R.id.txt_error_popular);
         prog_bar=v.findViewById(R.id.progress_bar_popular);
 
-        viewModel.networkState.observe(getViewLifecycleOwner(), networkState -> {
-            if(viewModel.isListEmpty() && networkState==NetworkState.Companion.LOADING) prog_bar.setVisibility(View.VISIBLE);
-            else prog_bar.setVisibility(View.GONE);
-            if(viewModel.isListEmpty() && networkState==NetworkState.Companion.ERROR) prog_bar.setVisibility(View.VISIBLE);
-            else prog_bar.setVisibility(View.GONE);
-
-            if(!viewModel.isListEmpty()) movieAdapter.setNetworkState(networkState);
-        });
-
         RecyclerView rv_movie_list = v.findViewById(R.id.rv_movie_list);
         rv_movie_list.setLayoutManager(gridLayoutManager);
         rv_movie_list.setHasFixedSize(true);
@@ -91,6 +82,9 @@ public class MovieFragment extends Fragment {
     }
 
     private void create_movies_list() {
-        viewModel.moviePagedList.observe(getViewLifecycleOwner(), movies -> movieAdapter.submitList(movies));
+        viewModel.moviePagedList.observe(getViewLifecycleOwner(), movies -> {
+            movieAdapter.submitList(movies);
+            //Toast.makeText(MyApplication.getContext(), "Updated", Toast.LENGTH_SHORT).show();
+        });
     }
 }

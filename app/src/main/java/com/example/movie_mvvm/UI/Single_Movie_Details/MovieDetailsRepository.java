@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData;
 
 import com.example.movie_mvvm.Data.API.APIService;
 import com.example.movie_mvvm.Data.Repository.MovieRepositories.MovieDetailsNetworkDataSource;
-import com.example.movie_mvvm.Data.Repository.NetworkState;
 import com.example.movie_mvvm.Data.VO.Movies.MovieCast;
 import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
 
@@ -31,9 +30,5 @@ public class MovieDetailsRepository {
         movieDetailsNetworkDataSource=new MovieDetailsNetworkDataSource(apiService, compositeDisposable);
         movieDetailsNetworkDataSource.fetch_movie_cast(movieId);
         return movieDetailsNetworkDataSource.get_DownloadedMovieCastResponse();
-    }
-
-    LiveData<NetworkState> getMovieDetailNetworkState() {
-        return movieDetailsNetworkDataSource.get_NetworkState();
     }
 }

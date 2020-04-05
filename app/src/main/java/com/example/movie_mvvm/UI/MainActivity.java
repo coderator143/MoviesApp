@@ -5,31 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.paging.PagedList;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import com.example.movie_mvvm.Data.API.TheMovieDBClient;
-import com.example.movie_mvvm.Data.API.APIService;
-import com.example.movie_mvvm.Data.Repository.NetworkState;
-import com.example.movie_mvvm.Data.VO.Movies.Movie;
 import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.UI.PopularMovie.MovieFragment;
-import com.example.movie_mvvm.UI.PopularMovie.MovieFragmentViewModel;
-import com.example.movie_mvvm.UI.PopularMovie.MoviePagedListRepository;
-import com.example.movie_mvvm.UI.PopularMovie.PopularMoviePagedListAdapter;
 import com.example.movie_mvvm.UI.PopularTVShow.TVShowFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;

@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="Connection problem!!"
-            android:fontFamily="@font/bahnschrift"
+            android:fontFamily="@font/open_sans_regular"
             android:visibility="gone"/>
         
         <ScrollView
@@ -65,16 +65,16 @@
                         android:layout_height="wrap_content"
                         android:text="Movie"
                         android:textColor="#8b0000"
-                        android:fontFamily="@font/bahnschrift"
-                        android:textSize="26sp"/>
+                        android:fontFamily="@font/montserrat_extra_bold"
+                        android:textSize="28sp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/movie_tagline"
-                        android:fontFamily="@font/bahnschrift"
+                        android:fontFamily="@font/open_sans_regular"
                         android:text="No tagline here XD"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:layout_marginBottom="16dp" />
 
                     <View
@@ -86,11 +86,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Movie Cast"
-                        android:fontFamily="@font/bahnschrift"
+                        android:fontFamily="@font/montserrat_extra_bold"
                         android:textColor="#006400"
                         android:layout_marginBottom="16dp"
                         android:layout_marginTop="16dp"
-                        android:textSize="22sp" />
+                        android:textSize="24sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_cast_list"
@@ -107,10 +107,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Movie info"
-                        android:fontFamily="@font/bahnschrift"
+                        android:fontFamily="@font/montserrat_extra_bold"
                         android:textColor="#006400"
                         android:layout_marginTop="16dp"
-                        android:textSize="22sp" />
+                        android:textSize="24sp" />
                     
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -122,8 +122,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Release date: "
-                            android:textSize="18sp"
-                            android:fontFamily="@font/bahnschrift"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/open_sans_regular"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -132,8 +132,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="2019"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/bahnschrift" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/open_sans_regular" />
                         
                     </LinearLayout>
 
@@ -147,8 +147,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Rating: "
-                            android:textSize="18sp"
-                            android:fontFamily="@font/bahnschrift"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/open_sans_regular"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -157,8 +157,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="No rating given XD"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/bahnschrift" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/open_sans_regular" />
 
                     </LinearLayout>
 
@@ -172,8 +172,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Budget: "
-                            android:textSize="18sp"
-                            android:fontFamily="@font/bahnschrift"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/open_sans_regular"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -182,8 +182,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Don't know XD"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/bahnschrift" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/open_sans_regular" />
 
                     </LinearLayout>
 
@@ -198,8 +198,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Revenue: "
-                            android:textSize="18sp"
-                            android:fontFamily="@font/bahnschrift"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/open_sans_regular"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -208,8 +208,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Don't know XD"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/bahnschrift" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/open_sans_regular" />
 
                     </LinearLayout>
 
@@ -223,9 +223,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:text="Overview"
-                        android:textSize="22sp"
+                        android:textSize="24sp"
                         android:textColor="#006400"
-                        android:fontFamily="@font/bahnschrift" />
+                        android:fontFamily="@font/montserrat_extra_bold" />
 
                     <TextView
                         android:id="@+id/movie_overview"
@@ -233,8 +233,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:text="Do watch it. The directors definitely worked hard."
-                        android:textSize="18sp"
-                        android:fontFamily="@font/bahnschrift" />
+                        android:textSize="14sp"
+                        android:fontFamily="@font/open_sans_regular" />
 
 
                 </LinearLayout>

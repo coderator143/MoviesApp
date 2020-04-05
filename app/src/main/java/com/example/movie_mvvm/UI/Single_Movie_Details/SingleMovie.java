@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_mvvm.Data.API.TheMovieDBClient;
 import com.example.movie_mvvm.Data.API.APIService;
-import com.example.movie_mvvm.Data.Repository.NetworkState;
 import com.example.movie_mvvm.Data.VO.Movies.MovieCast;
 import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
 import com.example.movie_mvvm.R;
@@ -79,16 +78,6 @@ public class SingleMovie extends AppCompatActivity {
             @Override
             public void onChanged(List<MovieCast> movieCasts) {
                 castListAdapter.submitList(movieCasts);
-            }
-        });
-
-        viewModel.networkState.observe(this, new Observer<NetworkState>() {
-            @Override
-            public void onChanged(NetworkState networkState) {
-                if(networkState==NetworkState.Companion.LOADING) progressBar.setVisibility(View.VISIBLE);
-                else progressBar.setVisibility(View.GONE);
-                if(networkState==NetworkState.Companion.ERROR) progressBar.setVisibility(View.VISIBLE);
-                else progressBar.setVisibility(View.GONE);
             }
         });
 

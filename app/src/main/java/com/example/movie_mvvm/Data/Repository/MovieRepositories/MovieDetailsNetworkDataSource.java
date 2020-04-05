@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.movie_mvvm.Data.API.APIService;
-import com.example.movie_mvvm.Data.Repository.NetworkState;
 import com.example.movie_mvvm.Data.VO.Movies.MovieCast;
 import com.example.movie_mvvm.Data.VO.Movies.MovieCredits;
 import com.example.movie_mvvm.Data.VO.Movies.MovieDetails;
@@ -22,7 +21,6 @@ public class MovieDetailsNetworkDataSource {
 
     private APIService apiService;
     private CompositeDisposable compositeDisposable;
-    private MutableLiveData<NetworkState> _networkState=new MutableLiveData<NetworkState>();
     private MutableLiveData<MovieDetails> _downloadedMovieDetailsResponse = new MutableLiveData<MovieDetails>();
     private MutableLiveData<List<MovieCast>> _downloadedMovieCastResponse = new MutableLiveData<>();
 
@@ -31,14 +29,11 @@ public class MovieDetailsNetworkDataSource {
         this.compositeDisposable=compositeDisposable;
     }
 
-    public LiveData<NetworkState> get_NetworkState() { return _networkState; }
-
     public LiveData<MovieDetails> get_DownloadedMovieDetailsResponse() { return _downloadedMovieDetailsResponse; }
 
     public LiveData<List<MovieCast>> get_DownloadedMovieCastResponse() { return _downloadedMovieCastResponse;}
 
     public void fetch_movie_details(int movieID) {
-        _networkState.postValue(NetworkState.Companion.LOADING);
         try {
             compositeDisposable.add(
                     apiService.get_movie_details(movieID)
@@ -47,12 +42,10 @@ public class MovieDetailsNetworkDataSource {
                         @Override
                         public void onSuccess(MovieDetails o) {
                             _downloadedMovieDetailsResponse.postValue(o);
-                            _networkState.postValue(NetworkState.Companion.LOADED);
                         }
 
                         @Override
                         public void onError(Throwable e) {
-                            _networkState.postValue(NetworkState.Companion.ERROR);
                             Log.e("MovieDetailDataSource", Objects.requireNonNull(e.toString()));
                         }
                     })
@@ -63,7 +56,6 @@ public class MovieDetailsNetworkDataSource {
     }
 
     public void fetch_movie_cast(int movieID) {
-        _networkState.postValue(NetworkState.Companion.LOADING);
         try {
             compositeDisposable.add(
                     apiService.get_movie_credits(movieID)
