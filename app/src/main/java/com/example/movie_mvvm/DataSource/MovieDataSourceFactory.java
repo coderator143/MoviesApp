@@ -13,7 +13,7 @@ public class MovieDataSourceFactory extends DataSource.Factory<Integer, Movie> {
 
     private CompositeDisposable compositeDisposable;
     private APIService apiService;
-    public MutableLiveData<MovieDataSource> moviesLiveDataSource=new MutableLiveData<>();
+    private MutableLiveData<MovieDataSource> moviesLiveDataSource=new MutableLiveData<>();
 
     public MovieDataSourceFactory(CompositeDisposable compositeDisposable, APIService apiService) {
         this.compositeDisposable=compositeDisposable;

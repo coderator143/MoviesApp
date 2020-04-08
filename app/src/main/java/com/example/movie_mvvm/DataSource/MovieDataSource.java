@@ -3,6 +3,7 @@ package com.example.movie_mvvm.DataSource;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.paging.PageKeyedDataSource;
 
 import com.example.movie_mvvm.NetworkServices.APIService;
@@ -10,6 +11,7 @@ import com.example.movie_mvvm.Entities.Movie;
 import com.example.movie_mvvm.Entities.MovieResponse;
 import com.example.movie_mvvm.Utilities.Constants;
 
+import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -48,9 +50,7 @@ public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
     }
 
     @Override
-    public void loadBefore(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Movie> callback) {
-
-    }
+    public void loadBefore(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Movie> callback) { }
 
     @Override
     public void loadAfter(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Movie> callback) {

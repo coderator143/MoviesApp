@@ -4,24 +4,35 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.paging.DataSource;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.movie_mvvm.Adapters.PopularMoviePagedListAdapter;
+import com.example.movie_mvvm.DataSource.MovieDataSourceFactory;
+import com.example.movie_mvvm.Entities.Movie;
 import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.NetworkServices.TheMovieDBClient;
 import com.example.movie_mvvm.R;
+import com.example.movie_mvvm.Utilities.Constants;
+import com.example.movie_mvvm.Utilities.MyApplication;
 import com.example.movie_mvvm.ViewModels.MovieFragmentViewModel;
 import com.example.movie_mvvm.Repositories.MoviePagedListRepository;
+
+import java.util.Objects;
+
+import io.reactivex.disposables.CompositeDisposable;
 
 
 public class MovieFragment extends Fragment {
@@ -29,9 +40,8 @@ public class MovieFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private MovieFragmentViewModel viewModel;
     private MoviePagedListRepository movieRepository;
-    private TextView error_msg;
     private PopularMoviePagedListAdapter movieAdapter;
-    private ProgressBar prog_bar;
+    APIService apiService;
 
     @Nullable
     @Override
@@ -39,10 +49,9 @@ public class MovieFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_movie, container, false);
 
-        APIService apiService = new TheMovieDBClient().getClient();
+        apiService = new TheMovieDBClient().getClient();
         movieRepository=new MoviePagedListRepository(apiService);
-        viewModel=getViewModel();
-
+        viewModel = getInitialViewModel();
         movieAdapter=new PopularMoviePagedListAdapter(getContext());
         GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(), 3);
 
@@ -59,12 +68,10 @@ public class MovieFragment extends Fragment {
 
         swipeRefreshLayout=v.findViewById(R.id.sr_movie_list);
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            create_movies_list();
+            Objects.requireNonNull(viewModel.moviePagedList.getValue()).getDataSource().invalidate();
+
             swipeRefreshLayout.setRefreshing(false);
         });
-
-        error_msg=v.findViewById(R.id.txt_error_popular);
-        prog_bar=v.findViewById(R.id.progress_bar_popular);
 
         RecyclerView rv_movie_list = v.findViewById(R.id.rv_movie_list);
         rv_movie_list.setLayoutManager(gridLayoutManager);
@@ -74,7 +81,7 @@ public class MovieFragment extends Fragment {
         return v;
     }
 
-    private MovieFragmentViewModel getViewModel() {
+    private MovieFragmentViewModel getInitialViewModel() {
         return new ViewModelProvider(this, new ViewModelProvider.Factory() {
             @NonNull
             @Override
@@ -87,7 +94,6 @@ public class MovieFragment extends Fragment {
     private void create_movies_list() {
         viewModel.moviePagedList.observe(getViewLifecycleOwner(), movies -> {
             movieAdapter.submitList(movies);
-            //Toast.makeText(MyApplication.getContext(), "Updated", Toast.LENGTH_SHORT).show();
         });
     }
 }

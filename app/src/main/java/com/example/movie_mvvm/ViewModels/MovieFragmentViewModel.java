@@ -22,8 +22,6 @@ public class MovieFragmentViewModel extends ViewModel {
         moviePagedList=movieRepository.fetchLiveMoviePagedList(compositeDisposable);
     }
 
-    public boolean isListEmpty() {return Objects.requireNonNull(moviePagedList.getValue()).isEmpty();}
-
     @Override
     protected void onCleared() {
         super.onCleared();
