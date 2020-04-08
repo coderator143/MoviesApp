@@ -53,24 +53,25 @@ public class CastListAdapter extends ListAdapter<MovieCast, CastListAdapter.Cast
         holder.bind(getItem(position));
     }
 
-    public class CastListHolder extends RecyclerView.ViewHolder {
+    static class CastListHolder extends RecyclerView.ViewHolder {
 
         private TextView castName, castCharacter;
         private ImageView castImage;
 
-        public CastListHolder(@NonNull View itemView) {
+        CastListHolder(@NonNull View itemView) {
             super(itemView);
             castName=itemView.findViewById(R.id.cv_tv_cast_name);
             castCharacter=itemView.findViewById(R.id.cv_tv_cast_character);
             castImage=itemView.findViewById(R.id.cv_iv_cast);
         }
 
-        public void bind(MovieCast movieCast) {
+        void bind(MovieCast movieCast) {
             castName.setText(movieCast.getCastName());
             castCharacter.setText(movieCast.getCastCharacter());
 
             String castPosterUrl=Constants.POSTER_BASE_URL+movieCast.getCastPoster();
-            Glide.with(itemView.getContext())
+            if(movieCast.getCastPoster()==null) castImage.setImageResource(R.drawable.character);
+            else Glide.with(itemView.getContext())
                     .load(castPosterUrl)
                     .into(castImage);
         }

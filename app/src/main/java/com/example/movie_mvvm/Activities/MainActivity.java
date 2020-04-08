@@ -2,11 +2,13 @@ package com.example.movie_mvvm.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.movie_mvvm.Fragments.TVShowFragment;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager viewPager;
+    androidx.appcompat.widget.SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,23 @@ public class MainActivity extends AppCompatActivity {
 
         Objects.requireNonNull(tabLayout.getTabAt(0)).setIcon(R.drawable.movies);
         Objects.requireNonNull(tabLayout.getTabAt(1)).setIcon(R.drawable.tv_show);
+
+        searchView = findViewById(R.id.sv_movies);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent intent=new Intent(MainActivity.this, SearchMoviesActivity.class);
+                intent.putExtra("query", query);
+                startActivity(intent);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 
     @Override

@@ -1,39 +1,27 @@
 package com.example.movie_mvvm.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.paging.DataSource;
-import androidx.paging.LivePagedListBuilder;
-import androidx.paging.PagedList;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.example.movie_mvvm.Adapters.PopularMoviePagedListAdapter;
-import com.example.movie_mvvm.DataSource.MovieDataSourceFactory;
-import com.example.movie_mvvm.Entities.Movie;
 import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.NetworkServices.TheMovieDBClient;
 import com.example.movie_mvvm.R;
-import com.example.movie_mvvm.Utilities.Constants;
-import com.example.movie_mvvm.Utilities.MyApplication;
 import com.example.movie_mvvm.ViewModels.MovieFragmentViewModel;
 import com.example.movie_mvvm.Repositories.MoviePagedListRepository;
-
 import java.util.Objects;
-
-import io.reactivex.disposables.CompositeDisposable;
-
 
 public class MovieFragment extends Fragment {
 
@@ -41,7 +29,7 @@ public class MovieFragment extends Fragment {
     private MovieFragmentViewModel viewModel;
     private MoviePagedListRepository movieRepository;
     private PopularMoviePagedListAdapter movieAdapter;
-    APIService apiService;
+    private SearchView searchView;
 
     @Nullable
     @Override
@@ -49,7 +37,7 @@ public class MovieFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_movie, container, false);
 
-        apiService = new TheMovieDBClient().getClient();
+        APIService apiService = new TheMovieDBClient().getClient();
         movieRepository=new MoviePagedListRepository(apiService);
         viewModel = getInitialViewModel();
         movieAdapter=new PopularMoviePagedListAdapter(getContext());
@@ -69,7 +57,6 @@ public class MovieFragment extends Fragment {
         swipeRefreshLayout=v.findViewById(R.id.sr_movie_list);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             Objects.requireNonNull(viewModel.moviePagedList.getValue()).getDataSource().invalidate();
-
             swipeRefreshLayout.setRefreshing(false);
         });
 
@@ -92,8 +79,6 @@ public class MovieFragment extends Fragment {
     }
 
     private void create_movies_list() {
-        viewModel.moviePagedList.observe(getViewLifecycleOwner(), movies -> {
-            movieAdapter.submitList(movies);
-        });
+        viewModel.moviePagedList.observe(getViewLifecycleOwner(), movies -> movieAdapter.submitList(movies));
     }
 }

@@ -71,7 +71,7 @@ public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, Recycl
                 @SuppressLint("DiffUtilEquals")
                 @Override
                 public boolean areContentsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
-                    return oldItem.equals(newItem);
+                    return false;
                 }
             };
 
@@ -92,7 +92,8 @@ public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, Recycl
             movie_release_date.setText(movie.get_release_date());
 
             String moviePosterURL = Constants.POSTER_BASE_URL + movie.get_poster_path();
-            Glide.with(itemView.getContext())
+            if(movie.get_poster_path()==null) movie_poster.setImageResource(R.drawable.no_movie);
+            else Glide.with(itemView.getContext())
                     .load(moviePosterURL)
                     .into(movie_poster);
 

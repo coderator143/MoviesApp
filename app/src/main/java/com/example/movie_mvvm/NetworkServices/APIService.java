@@ -19,4 +19,7 @@ public interface APIService {
 
     @GET("movie/{movie_id}/credits")
     Single<MovieCredits> get_movie_credits(@Path("movie_id") int id);
+
+    @GET("search/movie")
+    Single<MovieResponse> get_searched_movies(@Query("query") String query, @Query("page") int page);
 }
