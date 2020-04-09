@@ -38,13 +38,10 @@ public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
                     @Override
                     public void onSuccess(MovieResponse movieResponse) {
                         callback.onResult(movieResponse.get_results(), null, page+1);
-                        Log.d("Connection", "Connected");
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-                        Log.d("Connection", "Disconnected-load-initial");
-                    }
+                    public void onError(Throwable e) { }
                 })
         );
     }

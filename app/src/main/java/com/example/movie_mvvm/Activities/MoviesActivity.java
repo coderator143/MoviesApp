@@ -1,47 +1,52 @@
-package com.example.movie_mvvm.Fragments;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.SearchView;
+package com.example.movie_mvvm.Activities;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.os.Bundle;
 import com.example.movie_mvvm.Adapters.PopularMoviePagedListAdapter;
 import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.NetworkServices.TheMovieDBClient;
 import com.example.movie_mvvm.R;
-import com.example.movie_mvvm.ViewModels.MovieFragmentViewModel;
 import com.example.movie_mvvm.Repositories.MoviePagedListRepository;
+import com.example.movie_mvvm.ViewModels.MovieFragmentViewModel;
 import java.util.Objects;
 
-public class MovieFragment extends Fragment {
+public class MoviesActivity extends AppCompatActivity {
 
+    Toolbar toolbar;
     private SwipeRefreshLayout swipeRefreshLayout;
     private MovieFragmentViewModel viewModel;
     private MoviePagedListRepository movieRepository;
     private PopularMoviePagedListAdapter movieAdapter;
-    private SearchView searchView;
+    private androidx.appcompat.widget.SearchView searchView;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.fragment_movie, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        toolbar=findViewById(R.id.toolbar_popular_movies);
+        setSupportActionBar(toolbar);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.white),
+                PorterDuff.Mode.SRC_ATOP);
 
         APIService apiService = new TheMovieDBClient().getClient();
         movieRepository=new MoviePagedListRepository(apiService);
         viewModel = getInitialViewModel();
-        movieAdapter=new PopularMoviePagedListAdapter(getContext());
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(), 3);
+        movieAdapter=new PopularMoviePagedListAdapter(this);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(this, 3);
 
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -54,18 +59,33 @@ public class MovieFragment extends Fragment {
 
         create_movies_list();
 
-        swipeRefreshLayout=v.findViewById(R.id.sr_movie_list);
+        swipeRefreshLayout=findViewById(R.id.sr_movie_list);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             Objects.requireNonNull(viewModel.moviePagedList.getValue()).getDataSource().invalidate();
             swipeRefreshLayout.setRefreshing(false);
         });
 
-        RecyclerView rv_movie_list = v.findViewById(R.id.rv_movie_list);
+        RecyclerView rv_movie_list = findViewById(R.id.rv_movie_list);
         rv_movie_list.setLayoutManager(gridLayoutManager);
         rv_movie_list.setHasFixedSize(true);
         rv_movie_list.setAdapter(movieAdapter);
 
-        return v;
+        searchView = findViewById(R.id.sv_movies);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent intent=new Intent(MoviesActivity.this, SearchMoviesActivity.class);
+                intent.putExtra("query", query);
+                startActivity(intent);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 
     private MovieFragmentViewModel getInitialViewModel() {
@@ -79,6 +99,6 @@ public class MovieFragment extends Fragment {
     }
 
     private void create_movies_list() {
-        viewModel.moviePagedList.observe(getViewLifecycleOwner(), movies -> movieAdapter.submitList(movies));
+        viewModel.moviePagedList.observe(this, movies -> movieAdapter.submitList(movies));
     }
 }

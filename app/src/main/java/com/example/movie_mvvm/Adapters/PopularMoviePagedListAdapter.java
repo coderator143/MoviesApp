@@ -104,5 +104,4 @@ public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, Recycl
             });
         }
     }
-
 }

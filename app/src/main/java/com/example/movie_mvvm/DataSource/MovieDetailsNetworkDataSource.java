@@ -5,6 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.movie_mvvm.Entities.Movie;
+import com.example.movie_mvvm.Entities.MovieResponse;
 import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.Entities.MovieCast;
 import com.example.movie_mvvm.Entities.MovieCredits;
@@ -23,6 +25,7 @@ public class MovieDetailsNetworkDataSource {
     private CompositeDisposable compositeDisposable;
     private MutableLiveData<MovieDetails> _downloadedMovieDetailsResponse = new MutableLiveData<MovieDetails>();
     private MutableLiveData<List<MovieCast>> _downloadedMovieCastResponse = new MutableLiveData<>();
+    private MutableLiveData<List<Movie>> _downloadedHomePageMovieResponse = new MutableLiveData<>();
 
     public MovieDetailsNetworkDataSource(APIService apiService, CompositeDisposable compositeDisposable) {
         this.apiService=apiService;
@@ -32,6 +35,8 @@ public class MovieDetailsNetworkDataSource {
     public LiveData<MovieDetails> get_DownloadedMovieDetailsResponse() { return _downloadedMovieDetailsResponse; }
 
     public LiveData<List<MovieCast>> get_DownloadedMovieCastResponse() { return _downloadedMovieCastResponse;}
+
+    public LiveData<List<Movie>> get_DownloadedHomePageMovieResponse() { return _downloadedHomePageMovieResponse; }
 
     public void fetch_movie_details(int movieID) {
         try {
@@ -64,7 +69,6 @@ public class MovieDetailsNetworkDataSource {
                         @Override
                         public void onSuccess(MovieCredits movieCredits) {
                             _downloadedMovieCastResponse.postValue(movieCredits.getMovieCast());
-                            Log.d("cast1", "success");
                         }
 
                         @Override
@@ -74,6 +78,27 @@ public class MovieDetailsNetworkDataSource {
                     })
             );
         } catch (Exception e) {
+            Log.e("MovieDetailDataSource",e.toString());
+        }
+    }
+
+    public void fetch_homepage_movies() {
+        try {
+            compositeDisposable.add(
+                    apiService.get_popular_movie(1)
+                    .subscribeOn(Schedulers.io())
+                    .subscribeWith(new DisposableSingleObserver<MovieResponse>() {
+                        @Override
+                        public void onSuccess(MovieResponse movieResponse) {
+                            _downloadedHomePageMovieResponse.postValue(movieResponse.get_results());
+                        }
+
+                        @Override
+                        public void onError(Throwable e) { }
+                    })
+            );
+        }
+        catch (Exception e) {
             Log.e("MovieDetailDataSource",e.toString());
         }
     }

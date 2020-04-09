@@ -2,6 +2,7 @@ package com.example.movie_mvvm.Repositories;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.movie_mvvm.Entities.Movie;
 import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.DataSource.MovieDetailsNetworkDataSource;
 import com.example.movie_mvvm.Entities.MovieCast;
@@ -30,5 +31,11 @@ public class MovieDetailsRepository {
         movieDetailsNetworkDataSource=new MovieDetailsNetworkDataSource(apiService, compositeDisposable);
         movieDetailsNetworkDataSource.fetch_movie_cast(movieId);
         return movieDetailsNetworkDataSource.get_DownloadedMovieCastResponse();
+    }
+
+    public LiveData<List<Movie>> fetchingTwentyPopularMovies(CompositeDisposable compositeDisposable) {
+        movieDetailsNetworkDataSource=new MovieDetailsNetworkDataSource(apiService, compositeDisposable);
+        movieDetailsNetworkDataSource.fetch_homepage_movies();
+        return movieDetailsNetworkDataSource.get_DownloadedHomePageMovieResponse();
     }
 }

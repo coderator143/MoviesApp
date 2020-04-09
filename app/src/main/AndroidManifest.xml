@@ -13,10 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.SearchMoviesActivity"
-            android:parentActivityName=".Activities.MainActivity"/>
+            android:parentActivityName=".Activities.MoviesActivity"/>
         <activity android:name=".Activities.SingleMovie"
-            android:parentActivityName=".Activities.MainActivity"/>
-        <activity android:name=".Activities.MainActivity">
+            android:parentActivityName=".Activities.MoviesActivity"/>
+        <activity android:name=".Activities.MoviesActivity"
+            android:parentActivityName=".Activities.HomeActivity"/>
+        <activity android:name=".Activities.HomeActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
