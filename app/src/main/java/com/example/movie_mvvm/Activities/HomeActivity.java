@@ -1,18 +1,21 @@
 package com.example.movie_mvvm.Activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.SearchView;
-
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.example.movie_mvvm.Activities.Movies.MoviesActivity;
 import com.example.movie_mvvm.Adapters.PopularMoviesAdapter;
 import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.NetworkServices.TheMovieDBClient;
@@ -27,11 +30,17 @@ public class HomeActivity extends AppCompatActivity {
     private MovieDetailsRepository movieRepository;
     private PopularMoviesAdapter movieAdapter;
     private SearchView searchView;
+    private Toolbar toolbar;
+    private TextView t;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        toolbar=findViewById(R.id.toolbar_home);
+        setSupportActionBar(toolbar);
 
         APIService apiService = new TheMovieDBClient().getClient();
         movieRepository=new MovieDetailsRepository(apiService);
@@ -43,18 +52,28 @@ public class HomeActivity extends AppCompatActivity {
 
         create_popular_movies_list();
 
+        searchView = findViewById(R.id.sv_home);
+        t=findViewById(R.id.tv_home);
+        searchView.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+            if(searchView.isIconified()) {
+                t.setText("Home");
+                searchView.setBackgroundColor(getResources().getColor(R.color.toolbarcolor));
+            }
+            else {
+                t.setText("");
+                searchView.setBackgroundColor(getResources().getColor(R.color.white));
+            }
+        });
+
         RecyclerView rv_movie_list = findViewById(R.id.rv_list_twenty_popular);
         rv_movie_list.setLayoutManager(layoutManager);
         rv_movie_list.setAdapter(movieAdapter);
 
-        findViewById(R.id.tv_list_twenty_popular_movies).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, MoviesActivity.class));
-            }
-        });
+        findViewById(R.id.tv_list_twenty_popular_movies).setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, MoviesActivity.class)));
     }
 
+    @NonNull
     private MovieHomepageViewModel getPopularMoviesViewModel() {
         return new ViewModelProvider(this, new ViewModelProvider.Factory() {
             @NonNull

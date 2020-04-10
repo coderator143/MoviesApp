@@ -1,4 +1,4 @@
-package com.example.movie_mvvm.Activities;
+package com.example.movie_mvvm.Activities.Movies;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,9 +9,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.widget.TextView;
+
 import com.example.movie_mvvm.Adapters.PopularMoviePagedListAdapter;
 import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.NetworkServices.TheMovieDBClient;
@@ -23,12 +27,14 @@ import java.util.Objects;
 public class MoviesActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+    private TextView t;
     private SwipeRefreshLayout swipeRefreshLayout;
     private MovieFragmentViewModel viewModel;
     private MoviePagedListRepository movieRepository;
     private PopularMoviePagedListAdapter movieAdapter;
     private androidx.appcompat.widget.SearchView searchView;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +43,10 @@ public class MoviesActivity extends AppCompatActivity {
         toolbar=findViewById(R.id.toolbar_popular_movies);
         setSupportActionBar(toolbar);
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.white),
-                PorterDuff.Mode.SRC_ATOP);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.white),
+                //PorterDuff.Mode.SRC_ATOP);
 
         APIService apiService = new TheMovieDBClient().getClient();
         movieRepository=new MoviePagedListRepository(apiService);
@@ -71,6 +77,23 @@ public class MoviesActivity extends AppCompatActivity {
         rv_movie_list.setAdapter(movieAdapter);
 
         searchView = findViewById(R.id.sv_movies);
+        t=findViewById(R.id.tv_popular_movies);
+        searchView.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+            if(searchView.isIconified()) {
+                t.setText("Popular movies");
+                searchView.setBackgroundColor(getResources().getColor(R.color.toolbarcolor));
+                Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setDisplayShowHomeEnabled(true);
+                Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.white),
+                PorterDuff.Mode.SRC_ATOP);
+            }
+            else {
+                t.setText("");
+                searchView.setBackgroundColor(getResources().getColor(R.color.white));
+                Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+                getSupportActionBar().setDisplayShowHomeEnabled(false);
+            }
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

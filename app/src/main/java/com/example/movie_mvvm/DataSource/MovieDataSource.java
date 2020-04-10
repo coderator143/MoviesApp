@@ -38,6 +38,7 @@ public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
                     @Override
                     public void onSuccess(MovieResponse movieResponse) {
                         callback.onResult(movieResponse.get_results(), null, page+1);
+                        Log.d("Status", "Connected");
                     }
 
                     @Override
@@ -47,7 +48,9 @@ public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
     }
 
     @Override
-    public void loadBefore(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Movie> callback) { }
+    public void loadBefore(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Movie> callback) {
+        Log.d("Status", "Loading");
+    }
 
     @Override
     public void loadAfter(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Movie> callback) {
@@ -59,10 +62,10 @@ public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
                             public void onSuccess(MovieResponse movieResponse) {
                                 if(movieResponse.get_total_pages() >= params.key) {
                                     callback.onResult(movieResponse.get_results(), params.key+1);
-                                    Log.d("Connection", "Connected");
+                                    Log.d("Status", "Next page connected");
                                 }
                                 else {
-                                    Log.d("Connection", "End of list");
+                                    Log.d("Status", "End of list");
                                 }
                             }
 

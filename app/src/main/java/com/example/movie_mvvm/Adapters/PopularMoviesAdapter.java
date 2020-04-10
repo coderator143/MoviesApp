@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -15,9 +14,8 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.movie_mvvm.Activities.SingleMovie;
+import com.example.movie_mvvm.Activities.Movies.SingleMovie;
 import com.example.movie_mvvm.Entities.Movie;
-import com.example.movie_mvvm.Entities.MovieCast;
 import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.Utilities.Constants;
 

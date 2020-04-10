@@ -1,4 +1,4 @@
-package com.example.movie_mvvm.Activities;
+package com.example.movie_mvvm.Activities.Movies;
 
 import android.os.Bundle;
 import android.view.View;

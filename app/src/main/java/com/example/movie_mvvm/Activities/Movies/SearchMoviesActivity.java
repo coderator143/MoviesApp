@@ -1,4 +1,4 @@
-package com.example.movie_mvvm.Activities;
+package com.example.movie_mvvm.Activities.Movies;
 
 import android.annotation.SuppressLint;
 import android.graphics.PorterDuff;
@@ -35,13 +35,8 @@ public class SearchMoviesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_movies);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_search);
+        Toolbar toolbar = findViewById(R.id.toolbar_movies_search);
         setSupportActionBar(toolbar);
-
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.white),
-                PorterDuff.Mode.SRC_ATOP);
 
         query=getIntent().getStringExtra("query");
 
@@ -70,6 +65,24 @@ public class SearchMoviesActivity extends AppCompatActivity {
         rv_movie_list.setAdapter(movieAdapter);
 
         SearchView searchView = findViewById(R.id.sv_movies_search);
+        TextView t=findViewById(R.id.tv_movies_search);
+        searchView.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+            if(searchView.isIconified()) {
+                t.setText("Results for movies");
+                searchView.setBackgroundColor(getResources().getColor(R.color.toolbarcolor));
+                Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setDisplayShowHomeEnabled(true);
+                Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.white),
+                        PorterDuff.Mode.SRC_ATOP);
+            }
+            else {
+                t.setText("");
+                searchView.setBackgroundColor(getResources().getColor(R.color.white));
+                Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+                getSupportActionBar().setDisplayShowHomeEnabled(false);
+            }
+        });
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_mvvm.Entities.Movie;
 import com.example.movie_mvvm.R;
-import com.example.movie_mvvm.Activities.SingleMovie;
+import com.example.movie_mvvm.Activities.Movies.SingleMovie;
 import com.example.movie_mvvm.Utilities.Constants;
 
 import java.util.Objects;

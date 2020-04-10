@@ -234,8 +234,8 @@
                         android:layout_marginTop="2dp"
                         android:text="Do watch it. The directors definitely worked hard."
                         android:textSize="14sp"
-                        android:fontFamily="@font/open_sans_regular" />
-
+                        android:fontFamily="@font/open_sans_regular"
+                        android:layout_marginBottom="12dp"/>
 
                 </LinearLayout>
 

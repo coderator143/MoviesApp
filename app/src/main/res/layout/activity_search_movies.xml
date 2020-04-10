@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Activities.SearchMoviesActivity">
+    tools:context=".Activities.Movies.SearchMoviesActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,22 +19,48 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_search"
+                android:id="@+id/toolbar_movies_search"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
                 android:background="#8b0000"
-                app:title="Results"
-                app:titleTextColor="#fff"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
+                app:title="Popular Movies"
+                app:titleTextColor="#fff">
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/sv_movies_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:queryHint="Search for movies ..."
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="#fff"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_movies_search"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:elevation="2dp"
+                        android:text="Results for movies"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:textColor="#fff"/>
+
+                    <androidx.appcompat.widget.SearchView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:id="@+id/sv_movies_search"
+                        style="@style/SearchViewStyle"
+                        android:layoutDirection="rtl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#8b0000"
+                        android:gravity="end"
+                        app:queryHint="Search for movies ..." />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 

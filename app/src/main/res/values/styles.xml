@@ -8,4 +8,8 @@
         <item name="colorAccent">#8b0000</item>
     </style>
 
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="searchIcon">@drawable/ic_search</item>
+    </style>
+
 </resources>
