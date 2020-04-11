@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,8 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.movie_mvvm.Activities.Movies.SingleMovie;
-import com.example.movie_mvvm.Entities.Movie;
+import com.example.movie_mvvm.Activities.MovieActivities.SingleMovie;
+import com.example.movie_mvvm.Entities.Movies.Movie;
 import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.Utilities.Constants;
 
@@ -45,12 +46,13 @@ public class PopularMoviesAdapter extends ListAdapter<Movie, PopularMoviesAdapte
     @NonNull
     @Override
     public PopularMoviesListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_movies_list_item, parent, false);
+        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_twenty_list_item, parent, false);
         return new PopularMoviesListHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PopularMoviesListHolder holder, int position) {
+        holder.itemView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.down_to_up));
         holder.bind(getItem(position), context);
     }
 

@@ -1,8 +1,9 @@
 package com.example.movie_mvvm.NetworkServices;
 
-import com.example.movie_mvvm.Entities.MovieCredits;
-import com.example.movie_mvvm.Entities.MovieDetails;
-import com.example.movie_mvvm.Entities.MovieResponse;
+import com.example.movie_mvvm.Entities.Movies.MovieCredits;
+import com.example.movie_mvvm.Entities.Movies.MovieDetails;
+import com.example.movie_mvvm.Entities.Movies.MovieResponse;
+import com.example.movie_mvvm.Entities.TVShows.TVShowResponse;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
@@ -22,4 +23,7 @@ public interface APIService {
 
     @GET("search/movie")
     Single<MovieResponse> get_searched_movies(@Query("query") String query, @Query("page") int page);
+
+    @GET("tv/popular")
+    Single<TVShowResponse> get_popular_tv_shows(@Query("page") int page);
 }

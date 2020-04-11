@@ -1,7 +1,4 @@
 package com.example.movie_mvvm.Utilities;
-
-import com.example.movie_mvvm.Entities.MovieResponse;
-
 public class Constants {
 
     public static final String API_KEY="5bdd7f40c40addb963f95f92684bfa34";

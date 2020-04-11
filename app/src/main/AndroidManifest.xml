@@ -12,11 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Movies.SearchMoviesActivity"
-            android:parentActivityName=".Activities.Movies.MoviesActivity"/>
-        <activity android:name=".Activities.Movies.SingleMovie"
-            android:parentActivityName=".Activities.Movies.MoviesActivity"/>
-        <activity android:name=".Activities.Movies.MoviesActivity"
+        <activity android:name=".Activities.TVShowActivities.PopularTvShowsActivity"
+            android:parentActivityName=".Activities.HomeActivity"/>
+        <activity android:name=".Activities.MovieActivities.SearchMoviesActivity"
+            android:parentActivityName=".Activities.MovieActivities.PopularMoviesActivity"/>
+        <activity android:name=".Activities.MovieActivities.SingleMovie"
+            android:parentActivityName=".Activities.MovieActivities.PopularMoviesActivity"/>
+        <activity android:name=".Activities.MovieActivities.PopularMoviesActivity"
             android:parentActivityName=".Activities.HomeActivity"/>
         <activity android:name=".Activities.HomeActivity" >
             <intent-filter>

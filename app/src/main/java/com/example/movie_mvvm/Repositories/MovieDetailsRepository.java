@@ -2,11 +2,11 @@ package com.example.movie_mvvm.Repositories;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.movie_mvvm.Entities.Movie;
+import com.example.movie_mvvm.Entities.Movies.Movie;
 import com.example.movie_mvvm.NetworkServices.APIService;
-import com.example.movie_mvvm.DataSource.MovieDetailsNetworkDataSource;
-import com.example.movie_mvvm.Entities.MovieCast;
-import com.example.movie_mvvm.Entities.MovieDetails;
+import com.example.movie_mvvm.Data.MoviesData.MovieDetailsNetworkDataSource;
+import com.example.movie_mvvm.Entities.Movies.MovieCast;
+import com.example.movie_mvvm.Entities.Movies.MovieDetails;
 
 import java.util.List;
 

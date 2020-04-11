@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.movie_mvvm.Entities.MovieCast;
+import com.example.movie_mvvm.Entities.Movies.MovieCast;
 import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.Utilities.Constants;
 
@@ -65,9 +65,11 @@ public class CastListAdapter extends ListAdapter<MovieCast, CastListAdapter.Cast
             castImage=itemView.findViewById(R.id.cv_iv_cast);
         }
 
+        @SuppressLint("SetTextI18n")
         void bind(MovieCast movieCast) {
             castName.setText(movieCast.getCastName());
-            castCharacter.setText(movieCast.getCastCharacter());
+            if(movieCast.getCastCharacter()!=null) castCharacter.setText(movieCast.getCastCharacter());
+            else castCharacter.setText("Character unknown");
 
             String castPosterUrl=Constants.POSTER_BASE_URL+movieCast.getCastPoster();
             if(movieCast.getCastPoster()==null) castImage.setImageResource(R.drawable.character);

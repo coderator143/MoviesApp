@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.DiffUtil.ItemCallback;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.movie_mvvm.Entities.Movie;
+import com.example.movie_mvvm.Entities.Movies.Movie;
 import com.example.movie_mvvm.R;
-import com.example.movie_mvvm.Activities.Movies.SingleMovie;
+import com.example.movie_mvvm.Activities.MovieActivities.SingleMovie;
 import com.example.movie_mvvm.Utilities.Constants;
 
 import java.util.Objects;
@@ -38,7 +38,7 @@ public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, Recycl
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view;
-        view = layoutInflater.inflate(R.layout.movie_list_item, parent, false);
+        view = layoutInflater.inflate(R.layout.popular_list_item, parent, false);
         return new MovieItemViewHolder(view);
     }
 
@@ -46,7 +46,7 @@ public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, Recycl
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == MOVIE_VIEW_TYPE) {
             ((MovieItemViewHolder) holder).itemView.setAnimation(AnimationUtils.loadAnimation(context,
-                    R.anim.down_to_up));
+                    R.anim.item_animation_fall_down));
             ((MovieItemViewHolder) holder).bind(Objects.requireNonNull(getItem(position)), context);
         }
     }
@@ -82,8 +82,8 @@ public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, Recycl
 
         MovieItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            movie_title = itemView.findViewById(R.id.cv_movie_title);
-            movie_release_date = itemView.findViewById(R.id.cv_movie_release_date);
+            movie_title = itemView.findViewById(R.id.cv_title);
+            movie_release_date = itemView.findViewById(R.id.cv_release_date);
             movie_poster = itemView.findViewById(R.id.cv_iv_image_view);
         }
 

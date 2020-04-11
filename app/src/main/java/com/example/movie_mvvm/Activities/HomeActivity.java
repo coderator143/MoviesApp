@@ -13,24 +13,21 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import com.example.movie_mvvm.Activities.Movies.MoviesActivity;
+import com.example.movie_mvvm.Activities.MovieActivities.PopularMoviesActivity;
+import com.example.movie_mvvm.Activities.TVShowActivities.PopularTvShowsActivity;
 import com.example.movie_mvvm.Adapters.PopularMoviesAdapter;
 import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.NetworkServices.TheMovieDBClient;
 import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.Repositories.MovieDetailsRepository;
-import com.example.movie_mvvm.ViewModels.MovieHomepageViewModel;
+import com.example.movie_mvvm.ViewModels.MoviesViewModel.MovieHomepageViewModel;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private SwipeRefreshLayout swipeRefreshLayout;
     private MovieHomepageViewModel movieHomepageViewModel;
     private MovieDetailsRepository movieRepository;
     private PopularMoviesAdapter movieAdapter;
     private SearchView searchView;
-    private Toolbar toolbar;
     private TextView t;
 
     @SuppressLint("SetTextI18n")
@@ -39,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        toolbar=findViewById(R.id.toolbar_home);
+        Toolbar toolbar = findViewById(R.id.toolbar_home);
         setSupportActionBar(toolbar);
 
         APIService apiService = new TheMovieDBClient().getClient();
@@ -70,7 +67,10 @@ public class HomeActivity extends AppCompatActivity {
         rv_movie_list.setAdapter(movieAdapter);
 
         findViewById(R.id.tv_list_twenty_popular_movies).setOnClickListener(v ->
-                startActivity(new Intent(HomeActivity.this, MoviesActivity.class)));
+                startActivity(new Intent(HomeActivity.this, PopularMoviesActivity.class)));
+
+        findViewById(R.id.tv_list_twenty_popular_tv_shows).setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, PopularTvShowsActivity.class)));
     }
 
     @NonNull
