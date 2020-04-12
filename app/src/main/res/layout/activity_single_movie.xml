@@ -1,248 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activities.MovieActivities.SearchMoviesActivity">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#ff8000"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/home"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="18dp"/>
-
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#000"
         android:orientation="vertical">
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/progress_bar"
-            android:layout_gravity="center"
-            android:visibility="gone"/>
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/txt_error"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapseActionView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#000"
+                app:contentScrim="#000"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="600dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/iv_movie_poster"
+                        android:scaleType="matrix" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab_home"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:elevation="2dp"
+                        android:backgroundTint="#ff6600"
+                        android:src="@drawable/home"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_margin="16dp"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/collapsed_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_collapseMode="none"/>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Connection problem!!"
-            android:fontFamily="@font/open_sans_regular"
-            android:visibility="gone"/>
-        
-        <ScrollView
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_marginTop="16dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:id="@+id/linearlayout">
+                android:clickable="true"
+                android:layout_margin="8dp">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="500dp"
-                    android:layout_gravity="center"
-                    android:id="@+id/iv_movie_poster"
-                    android:scaleType="matrix" />
+                <TextView
+                    android:id="@+id/movie_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Movie"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="#fff"
+                    android:fontFamily="@font/montserrat_extra_bold"
+                    android:textSize="32sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/movie_tagline"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="#fff"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:text="No tagline here XD"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="24dp" />
 
                 <LinearLayout
+                    android:layout_margin="24dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_margin="8dp">
-
-                    <TextView
-                        android:id="@+id/movie_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Movie"
-                        android:textColor="#000"
-                        android:fontFamily="@font/montserrat_extra_bold"
-                        android:textSize="28sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/movie_tagline"
-                        android:fontFamily="@font/open_sans_regular"
-                        android:text="No tagline here XD"
-                        android:textSize="16sp"
-                        android:layout_marginBottom="16dp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#c0c0c0"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Movie Cast"
-                        android:fontFamily="@font/montserrat_extra_bold"
-                        android:textColor="#000"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginTop="16dp"
-                        android:textSize="24sp" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_cast_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#c0c0c0"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Movie info"
-                        android:fontFamily="@font/montserrat_extra_bold"
-                        android:textColor="#000"
-                        android:layout_marginTop="16dp"
-                        android:textSize="24sp" />
-                    
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" 
-                        android:orientation="horizontal">
-                        
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Release date: "
-                            android:textSize="16sp"
-                            android:fontFamily="@font/open_sans_regular"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:id="@+id/movie_release_date"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="2019"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/open_sans_regular" />
-                        
-                    </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" >
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Rating: "
-                            android:textSize="16sp"
-                            android:fontFamily="@font/open_sans_regular"
-                            android:textStyle="bold"/>
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/star"/>
 
-                        <TextView
-                            android:id="@+id/movie_rating"
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="No rating given XD"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/open_sans_regular" />
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:text="Rating"
+                                android:fontFamily="@font/open_sans_regular"
+                                android:textColor="#fff"
+                                android:textSize="16sp"
+                                android:layout_marginStart="16dp"/>
+
+                            <TextView
+                                android:id="@+id/movie_rating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:text="7.2"
+                                android:fontFamily="@font/open_sans_regular"
+                                android:textColor="#fff"
+                                android:textSize="16sp"
+                                android:layout_marginStart="16dp"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" >
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Budget: "
-                            android:textSize="16sp"
-                            android:fontFamily="@font/open_sans_regular"
-                            android:textStyle="bold"/>
+                        <ImageView
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:src="@drawable/runtime"/>
 
-                        <TextView
-                            android:id="@+id/movie_budget"
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Don't know XD"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/open_sans_regular" />
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:text="Runtime"
+                                android:fontFamily="@font/open_sans_regular"
+                                android:textColor="#fff"
+                                android:textSize="16sp"
+                                android:layout_marginStart="16dp"/>
+
+                            <TextView
+                                android:id="@+id/tv_movie_runtime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:text="148m"
+                                android:fontFamily="@font/open_sans_regular"
+                                android:textColor="#fff"
+                                android:textSize="16sp"
+                                android:layout_marginStart="16dp"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Revenue: "
-                            android:textSize="16sp"
-                            android:fontFamily="@font/open_sans_regular"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:id="@+id/movie_revenue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Don't know XD"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/open_sans_regular" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#c0c0c0"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Overview"
-                        android:textSize="24sp"
-                        android:textColor="#000"
-                        android:fontFamily="@font/montserrat_extra_bold" />
-
-                    <TextView
-                        android:id="@+id/movie_overview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="Do watch it. The directors definitely worked hard."
-                        android:textSize="14sp"
-                        android:fontFamily="@font/open_sans_regular"
-                        android:layout_marginBottom="12dp"/>
 
                 </LinearLayout>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_cast_list"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Synopsis"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="24sp"
+                    android:textColor="#fff"
+                    android:fontFamily="@font/montserrat_extra_bold" />
+
+                <TextView
+                    android:id="@+id/movie_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="#fff"
+                    android:text="Do watch it. The directors
+                    definitely worked hard."
+                    android:textSize="14sp"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:layout_marginBottom="40dp"/>
+
+                <ImageView
+                    android:id="@+id/cancel_movie_details"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:src="@drawable/cancel"
+                    android:layout_gravity="center"/>
+
             </LinearLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

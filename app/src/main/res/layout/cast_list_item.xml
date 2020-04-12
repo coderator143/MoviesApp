@@ -15,6 +15,7 @@
 
     <LinearLayout
         android:layout_width="180dp"
+        android:background="#1b1e23"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
@@ -34,7 +35,7 @@
             android:text="Cast Name"
             android:fontFamily="@font/montserrat_extra_bold"
             android:textSize="14sp"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:maxLines="1"
             android:ellipsize="end"/>
 
@@ -46,6 +47,7 @@
             android:fontFamily="@font/open_sans_regular"
             android:layout_marginBottom="4dp"
             android:text="Character"
+            android:textColor="#fff"
             android:textSize="14sp"/>
 
     </LinearLayout>

@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:background="#8b0000"
                         android:gravity="end"
-                        app:queryHint="Search for movies/ TV show" />
+                        app:queryHint="Search for movies/TV show/people.." />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
