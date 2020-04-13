@@ -4,13 +4,14 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:id="@+id/card_view"
-    android:foreground="?selectableItemBackground"
+    android:background="#28231d"
     android:layout_margin="4dp"
     android:focusable="true"
     android:clickable="true" >
     
     <LinearLayout
         android:layout_width="match_parent"
+        android:background="#28231D"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
         
@@ -23,14 +24,14 @@
 
         <TextView
             android:id="@+id/cv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginStart="2dp"
             android:text="Title"
             android:fontFamily="@font/montserrat_extra_bold"
             android:textSize="14sp"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:maxLines="1"
             android:ellipsize="end"/>
 
@@ -39,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:textColor="#fff"
             android:layout_marginBottom="4dp"
             android:text="2019"
             android:fontFamily="@font/open_sans_regular"

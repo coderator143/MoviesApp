@@ -1,7 +1,9 @@
 package com.example.movie_mvvm.Adapters;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.movie_mvvm.Activities.MovieActivities.CastDetailActivity;
 import com.example.movie_mvvm.Entities.Movies.MovieCast;
 import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.Utilities.Constants;
@@ -21,10 +24,12 @@ import com.example.movie_mvvm.Utilities.Constants;
 public class CastListAdapter extends ListAdapter<MovieCast, CastListAdapter.CastListHolder> {
 
     private Context context;
+    private int movieID;
 
-    public CastListAdapter(Context context) {
+    public CastListAdapter(Context context, int movieID) {
         super(DIFF_CALLBACK);
         this.context=context;
+        this.movieID=movieID;
     }
 
     private static final DiffUtil.ItemCallback<MovieCast>DIFF_CALLBACK=
@@ -53,7 +58,7 @@ public class CastListAdapter extends ListAdapter<MovieCast, CastListAdapter.Cast
         holder.bind(getItem(position));
     }
 
-    static class CastListHolder extends RecyclerView.ViewHolder {
+    class CastListHolder extends RecyclerView.ViewHolder {
 
         private TextView castName, castCharacter;
         private ImageView castImage;
@@ -76,6 +81,14 @@ public class CastListAdapter extends ListAdapter<MovieCast, CastListAdapter.Cast
             else Glide.with(itemView.getContext())
                     .load(castPosterUrl)
                     .into(castImage);
+
+            itemView.setOnClickListener(v -> {
+                Intent intent=new Intent(context, CastDetailActivity.class);
+                intent.putExtra("castID", movieCast.getCastId());
+                intent.putExtra("id", movieID);
+                context.startActivity(intent);
+                ((Activity) context).finish();
+            });
         }
     }
 }

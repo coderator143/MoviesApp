@@ -4,7 +4,9 @@
       <w>imdb</w>
       <w>searchedmovies</w>
       <w>tagline</w>
+      <w>toolbarcolor</w>
       <w>tvshow</w>
+      <w>tvshows</w>
     </words>
   </dictionary>
 </component>

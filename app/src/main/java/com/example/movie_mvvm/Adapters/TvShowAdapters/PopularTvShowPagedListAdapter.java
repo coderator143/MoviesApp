@@ -1,8 +1,7 @@
-package com.example.movie_mvvm.Adapters;
+package com.example.movie_mvvm.Adapters.TvShowAdapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.movie_mvvm.Activities.MovieActivities.SingleMovie;
 import com.example.movie_mvvm.Entities.TVShows.TVShow;
 import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.Utilities.Constants;
@@ -93,7 +91,7 @@ public class PopularTvShowPagedListAdapter extends PagedListAdapter<TVShow, Recy
             tvshow_release_date.setText(tvShow.get_firstAirDate());
 
             String tvShowPosterURL = Constants.POSTER_BASE_URL + tvShow.get_tvPosterPath();
-            if(tvShow.get_tvPosterPath()==null) tvshow_poster.setImageResource(R.drawable.no_movie);
+            if(tvShow.get_tvPosterPath()==null) tvshow_poster.setImageResource(R.drawable.no_poster);
             else Glide.with(itemView.getContext())
                     .load(tvShowPosterURL)
                     .into(tvshow_poster);

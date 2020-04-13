@@ -10,7 +10,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000"
+        android:background="#1b1e23"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -22,7 +22,7 @@
                 android:id="@+id/collapseActionView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#000"
+                android:background="#1b1e23"
                 app:contentScrim="#000"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
@@ -38,7 +38,7 @@
                         android:layout_height="600dp"
                         android:layout_gravity="center"
                         android:id="@+id/iv_movie_poster"
-                        android:scaleType="matrix" />
+                        android:scaleType="fitCenter" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/fab_home"
@@ -223,7 +223,7 @@
 
                 <ImageView
                     android:id="@+id/cancel_movie_details"
-                    android:layout_width="24dp"
+                    android:layout_width="match_parent"
                     android:layout_height="24dp"
                     android:layout_marginBottom="24dp"
                     android:src="@drawable/cancel"

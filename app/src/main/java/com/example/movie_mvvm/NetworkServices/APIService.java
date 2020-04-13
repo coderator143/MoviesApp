@@ -1,5 +1,6 @@
 package com.example.movie_mvvm.NetworkServices;
 
+import com.example.movie_mvvm.Entities.Movies.CastDetails;
 import com.example.movie_mvvm.Entities.Movies.MovieCredits;
 import com.example.movie_mvvm.Entities.Movies.MovieDetails;
 import com.example.movie_mvvm.Entities.Movies.MovieResponse;
@@ -26,4 +27,7 @@ public interface APIService {
 
     @GET("tv/popular")
     Single<TVShowResponse> get_popular_tv_shows(@Query("page") int page);
+
+    @GET("person/{person_id}")
+    Single<CastDetails> get_cast_details(@Path("person_id") int id);
 }

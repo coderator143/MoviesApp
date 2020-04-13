@@ -15,6 +15,8 @@ public class UtilityMethods {
     }
 
     private void convertRuntime(String min) {
+        hours=0;
+        minutes=0;
         minutes=Integer.parseInt(min);
         while (minutes>59) {
             minutes-=60;

@@ -1,4 +1,4 @@
-package com.example.movie_mvvm.Adapters;
+package com.example.movie_mvvm.Adapters.MovieAdapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.movie_mvvm.Activities.MovieActivities.SingleMovie;
+import com.example.movie_mvvm.Activities.MovieActivities.SingleMovieActivity;
 import com.example.movie_mvvm.Entities.Movies.Movie;
 import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.Utilities.Constants;
@@ -62,7 +62,7 @@ public class PopularMoviesAdapter extends ListAdapter<Movie, PopularMoviesAdapte
 
         PopularMoviesListHolder(@NonNull View itemView) {
             super(itemView);
-            movie_poster = itemView.findViewById(R.id.cv_iv_popular_movies);
+            movie_poster = itemView.findViewById(R.id.cv_iv_popular);
         }
 
         void bind(Movie movie, Context context) {
@@ -73,7 +73,7 @@ public class PopularMoviesAdapter extends ListAdapter<Movie, PopularMoviesAdapte
                     .into(movie_poster);
 
             itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(context, SingleMovie.class);
+                Intent intent = new Intent(context, SingleMovieActivity.class);
                 intent.putExtra("id", movie.get_id());
                 context.startActivity(intent);
             });

@@ -19,7 +19,7 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:id="@+id/cv_iv_popular_movies"
+            android:id="@+id/cv_iv_popular"
             android:layout_width="150dp"
             android:layout_height="225dp"
             android:scaleType="centerCrop"

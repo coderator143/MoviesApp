@@ -23,13 +23,39 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Shantanu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Shantanu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/MovieActivities/SingleMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/MovieActivities/SingleMovie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Entities/Movies/MovieDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Entities/Movies/MovieDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/HomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/MovieActivities/PopularMoviesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/MovieActivities/PopularMoviesActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/MovieActivities/SearchMoviesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/MovieActivities/SearchMoviesActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/MovieActivities/SingleMovie.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/MovieActivities/SingleMovieActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/TVShowActivities/PopularTvShowsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Activities/TVShowActivities/PopularTvShowsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Adapters/CastListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Adapters/CastListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Adapters/PopularMoviePagedListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Adapters/MovieAdapters/PopularMoviePagedListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Adapters/PopularMoviesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Adapters/MovieAdapters/PopularMoviesAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Adapters/PopularTvShowPagedListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Adapters/TvShowAdapters/PopularTvShowPagedListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Data/MoviesData/MovieDetailsNetworkDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Data/MoviesData/MovieDetailsNetworkDataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Data/TvShowsData/TvShowsDetailsNetworkDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Data/TvShowsData/TvShowsDetailsNetworkDataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/NetworkServices/APIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/NetworkServices/APIService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Repositories/MovieDetailsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Repositories/DetailsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Utilities/UtilityMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/Utilities/UtilityMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/ViewModels/MoviesViewModel/MovieHomepageViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/ViewModels/MoviesViewModel/MovieHomepageViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/ViewModels/MoviesViewModel/SingleMovieViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/movie_mvvm/ViewModels/MoviesViewModel/SingleMovieViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-v24/popcorn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/famous.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/popular.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/quiz.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/tv_show.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_single_movie.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/cast_list_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/cast_list_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_popular_tv_shows.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_popular_tv_shows.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_movies.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_movies.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_single_movie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_single_movie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/popular_list_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/popular_list_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/popular_twenty_list_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/popular_twenty_list_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

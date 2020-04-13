@@ -1,19 +1,19 @@
-package com.example.movie_mvvm.ViewModels.MoviesViewModel;
+package com.example.movie_mvvm.ViewModels.TvShowsViewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.movie_mvvm.Entities.Movies.Movie;
+import com.example.movie_mvvm.Entities.TVShows.TVShow;
 import com.example.movie_mvvm.Repositories.DetailsRepository;
 import java.util.List;
 import io.reactivex.disposables.CompositeDisposable;
 
-public class MovieHomepageViewModel extends ViewModel {
+public class TvShowHomepageViewModel extends ViewModel {
 
     private CompositeDisposable compositeDisposable=new CompositeDisposable();
-    public LiveData<List<Movie>> popularMovies;
+    public LiveData<List<TVShow>> popularTvShows;
 
-    public MovieHomepageViewModel(DetailsRepository movieRepository) {
-        popularMovies=movieRepository.fetchingTwentyPopularMovies(compositeDisposable);
+    public TvShowHomepageViewModel(DetailsRepository detailsRepository) {
+        popularTvShows=detailsRepository.fetchingTwentyPopularTVShow(compositeDisposable);
     }
 
     @Override

@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import com.example.movie_mvvm.Adapters.PopularTvShowPagedListAdapter;
+import com.example.movie_mvvm.Adapters.TvShowAdapters.PopularTvShowPagedListAdapter;
 import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.NetworkServices.TheMovieDBClient;
 import com.example.movie_mvvm.R;

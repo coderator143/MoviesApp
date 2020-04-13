@@ -8,6 +8,7 @@
     tools:context=".Activities.MovieActivities.SearchMoviesActivity">
 
     <LinearLayout
+        android:background="#1B1E23"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -22,7 +23,6 @@
                 android:id="@+id/toolbar_movies_search"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#8b0000"
                 app:title="Popular Movies"
                 app:titleTextColor="#fff">
 
@@ -54,7 +54,6 @@
                         android:layoutDirection="rtl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#8b0000"
                         android:gravity="end"
                         app:queryHint="Search for movies ..." />
 

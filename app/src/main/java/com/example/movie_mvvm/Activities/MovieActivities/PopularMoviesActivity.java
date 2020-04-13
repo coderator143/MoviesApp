@@ -16,7 +16,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.movie_mvvm.Adapters.PopularMoviePagedListAdapter;
+import com.example.movie_mvvm.Adapters.MovieAdapters.PopularMoviePagedListAdapter;
 import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.NetworkServices.TheMovieDBClient;
 import com.example.movie_mvvm.R;

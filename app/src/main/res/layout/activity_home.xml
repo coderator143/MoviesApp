@@ -8,6 +8,7 @@
     tools:context=".Activities.MovieActivities.SearchMoviesActivity">
 
     <LinearLayout
+        android:background="#1b1e23"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -22,7 +23,7 @@
                 android:id="@+id/toolbar_home"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#8b0000"
+                android:background="#000"
                 app:title="Popular Movies"
                 app:titleTextColor="#fff">
 
@@ -30,6 +31,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:background="#000"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp">
 
@@ -54,7 +56,6 @@
                         android:layoutDirection="rtl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#8b0000"
                         android:gravity="end"
                         app:queryHint="Search for movies/TV show/people.." />
 
@@ -65,6 +66,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
+            android:background="#1b1e23"
             android:layout_marginTop="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,12 +76,12 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/famous" />
+                android:src="@drawable/movie_popular" />
 
             <TextView
                 android:id="@+id/tv_list_twenty_popular_movies"
                 android:layout_width="wrap_content"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:layout_height="wrap_content"
                 android:text="Popular Movies >"
                 android:fontFamily="@font/montserrat_extra_bold"
@@ -89,7 +91,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_list_twenty_popular"
+            android:id="@+id/rv_list_twenty_popular_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"/>
@@ -104,10 +106,10 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/quiz" />
+                android:src="@drawable/tv_popular" />
 
             <TextView
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:id="@+id/tv_list_twenty_popular_tv_shows"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,6 +119,12 @@
                 android:layout_gravity="center"/>
 
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list_twenty_popular_tvshows"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"/>
 
     </LinearLayout>
 

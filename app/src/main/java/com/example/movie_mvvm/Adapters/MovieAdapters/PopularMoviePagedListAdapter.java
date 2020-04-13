@@ -1,4 +1,4 @@
-package com.example.movie_mvvm.Adapters;
+package com.example.movie_mvvm.Adapters.MovieAdapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.movie_mvvm.Entities.Movies.Movie;
 import com.example.movie_mvvm.R;
-import com.example.movie_mvvm.Activities.MovieActivities.SingleMovie;
+import com.example.movie_mvvm.Activities.MovieActivities.SingleMovieActivity;
 import com.example.movie_mvvm.Utilities.Constants;
 
 import java.util.Objects;
@@ -92,13 +92,13 @@ public class PopularMoviePagedListAdapter extends PagedListAdapter<Movie, Recycl
             movie_release_date.setText(movie.get_release_date());
 
             String moviePosterURL = Constants.POSTER_BASE_URL + movie.get_poster_path();
-            if(movie.get_poster_path()==null) movie_poster.setImageResource(R.drawable.no_movie);
+            if(movie.get_poster_path()==null) movie_poster.setImageResource(R.drawable.thinking);
             else Glide.with(itemView.getContext())
                     .load(moviePosterURL)
                     .into(movie_poster);
 
             itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(context, SingleMovie.class);
+                Intent intent = new Intent(context, SingleMovieActivity.class);
                 intent.putExtra("id", movie.get_id());
                 context.startActivity(intent);
             });

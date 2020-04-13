@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.movie_mvvm.Entities.Movies.CastDetails;
 import com.example.movie_mvvm.Entities.Movies.Movie;
 import com.example.movie_mvvm.Entities.Movies.MovieResponse;
 import com.example.movie_mvvm.NetworkServices.APIService;
@@ -26,6 +27,7 @@ public class MovieDetailsNetworkDataSource {
     private MutableLiveData<MovieDetails> _downloadedMovieDetailsResponse = new MutableLiveData<>();
     private MutableLiveData<List<MovieCast>> _downloadedMovieCastResponse = new MutableLiveData<>();
     private MutableLiveData<List<Movie>> _downloadedHomePageMovieResponse = new MutableLiveData<>();
+    private MutableLiveData<CastDetails> _downloadedCastDetailsResponse = new MutableLiveData<>();
 
     public MovieDetailsNetworkDataSource(APIService apiService, CompositeDisposable compositeDisposable) {
         this.apiService=apiService;
@@ -37,6 +39,8 @@ public class MovieDetailsNetworkDataSource {
     public LiveData<List<MovieCast>> get_DownloadedMovieCastResponse() { return _downloadedMovieCastResponse;}
 
     public LiveData<List<Movie>> get_DownloadedHomePageMovieResponse() { return _downloadedHomePageMovieResponse; }
+
+    public LiveData<CastDetails> get_DownloadedCastDetailsResponse() { return _downloadedCastDetailsResponse; }
 
     public void fetch_movie_details(int movieID) {
         try {
@@ -55,9 +59,7 @@ public class MovieDetailsNetworkDataSource {
                         }
                     })
             );
-        } catch (Exception e) {
-            Log.e("MovieDetailDataSource",e.toString());
-        }
+        } catch (Exception e) { Log.e("MovieDetailDataSource",e.toString()); }
     }
 
     public void fetch_movie_cast(int movieID) {
@@ -77,9 +79,7 @@ public class MovieDetailsNetworkDataSource {
                         }
                     })
             );
-        } catch (Exception e) {
-            Log.e("MovieDetailDataSource",e.toString());
-        }
+        } catch (Exception e) { Log.e("MovieDetailDataSource",e.toString()); }
     }
 
     public void fetch_homepage_movies() {
@@ -97,9 +97,24 @@ public class MovieDetailsNetworkDataSource {
                         public void onError(Throwable e) { }
                     })
             );
-        }
-        catch (Exception e) {
-            Log.e("MovieDetailDataSource",e.toString());
-        }
+        } catch (Exception e) { Log.e("MovieDetailDataSource",e.toString()); }
+    }
+
+    public void fetch_cast_details(int castId) {
+        try {
+            compositeDisposable.add(
+                    apiService.get_cast_details(castId)
+                            .subscribeOn(Schedulers.io())
+                            .subscribeWith(new DisposableSingleObserver<CastDetails>() {
+                                @Override
+                                public void onSuccess(CastDetails castDetails) {
+                                    _downloadedCastDetailsResponse.postValue(castDetails);
+                                }
+
+                                @Override
+                                public void onError(Throwable e) { }
+                            })
+            );
+        } catch (Exception e) { Log.e("MovieDetailDataSource",e.toString()); }
     }
 }

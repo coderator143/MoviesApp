@@ -3,7 +3,6 @@ package com.example.movie_mvvm.Activities.MovieActivities;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,15 +17,15 @@ import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.Entities.Movies.MovieDetails;
 import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.Adapters.CastListAdapter;
-import com.example.movie_mvvm.Repositories.MovieDetailsRepository;
+import com.example.movie_mvvm.Repositories.DetailsRepository;
 import com.example.movie_mvvm.Utilities.UtilityMethods;
 import com.example.movie_mvvm.ViewModels.MoviesViewModel.SingleMovieViewModel;
 import com.example.movie_mvvm.Utilities.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class SingleMovie extends AppCompatActivity {
+public class SingleMovieActivity extends AppCompatActivity {
 
-    private MovieDetailsRepository movieDetailsRepository;
+    private DetailsRepository movieDetailsRepository;
     TextView movie_title, movie_tagline, movie_rating, movie_overview, movie_runtime;
     ImageView movie_poster, cancel_item;
     FloatingActionButton home;
@@ -47,22 +46,21 @@ public class SingleMovie extends AppCompatActivity {
         cast_rv=findViewById(R.id.rv_cast_list);
         cancel_item=findViewById(R.id.cancel_movie_details);
 
-        CastListAdapter castListAdapter=new CastListAdapter(this);
+        int movieId=getIntent().getIntExtra("id", 1);
+
+        CastListAdapter castListAdapter=new CastListAdapter(this, movieId);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
                 false);
 
-        int movieId=getIntent().getIntExtra("id", 1);
-
         APIService apiService= new TheMovieDBClient().getClient();
-        movieDetailsRepository = new MovieDetailsRepository(apiService);
+        movieDetailsRepository = new DetailsRepository(apiService);
         SingleMovieViewModel viewModel = getViewModel(movieId);
-
-        viewModel.moviedetails.observe(this, this::bindUI);
 
         viewModel.movieCast.observe(this, castListAdapter::submitList);
 
+        viewModel.moviedetails.observe(this, this::bindUI);
+
         cast_rv.setLayoutManager(layoutManager);
-        cast_rv.setHasFixedSize(true);
         cast_rv.setAdapter(castListAdapter);
     }
 
@@ -74,11 +72,15 @@ public class SingleMovie extends AppCompatActivity {
         String rating = String.valueOf(movieDetails.get_movie_rating());
         if(!rating.equals("0.0")) movie_rating.setText(rating);
         else movie_rating.setText("Dunno");
-        movie_overview.setText(movieDetails.get_movie_overview());
+        if(!movieDetails.get_movie_overview().equals("")) movie_overview.setText(movieDetails.get_movie_overview());
+        else movie_overview.setText("Do watch it. It definitely took more than a day of hard work.");
         String min=movieDetails.get_movie_runtime();
         if(min != null) {
             UtilityMethods ut=new UtilityMethods();
-            movie_runtime.setText(ut.getHoursFromRuntime(min)+"h"+ut.getMinutesFromRuntime(min)+"m");
+            if(ut.getMinutesFromRuntime(min).equals("0"))
+                movie_runtime.setText(ut.getHoursFromRuntime(min)+"h");
+            else if(ut.getHoursFromRuntime(min).equals("0")) movie_runtime.setText(ut.getMinutesFromRuntime(min)+"m");
+            else movie_runtime.setText(ut.getHoursFromRuntime(min)+"h"+ut.getMinutesFromRuntime(min)+"m");
         }
         else movie_runtime.setText("Dunno");
 
@@ -86,10 +88,7 @@ public class SingleMovie extends AppCompatActivity {
         if(movieDetails.get_movie_poster_path()!=null) Glide.with(this)
                 .load(moviePosterURL)
                 .into(movie_poster);
-        else {
-            movie_poster.setImageResource(R.drawable.no_movie);
-            movie_poster.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        }
+        else movie_poster.setImageResource(R.drawable.thinking);
 
         home.setOnClickListener(v -> finish());
         cancel_item.setOnClickListener(v -> finish());
