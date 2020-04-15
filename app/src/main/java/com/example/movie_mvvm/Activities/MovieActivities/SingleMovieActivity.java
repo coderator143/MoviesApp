@@ -9,9 +9,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.example.movie_mvvm.Adapters.MovieAdapters.GenreListAdapter;
 import com.example.movie_mvvm.NetworkServices.TheMovieDBClient;
 import com.example.movie_mvvm.NetworkServices.APIService;
 import com.example.movie_mvvm.Entities.Movies.MovieDetails;
@@ -19,6 +21,7 @@ import com.example.movie_mvvm.R;
 import com.example.movie_mvvm.Adapters.CastListAdapter;
 import com.example.movie_mvvm.Repositories.DetailsRepository;
 import com.example.movie_mvvm.Utilities.UtilityMethods;
+import com.example.movie_mvvm.ViewModels.MoviesViewModel.GenreViewModel;
 import com.example.movie_mvvm.ViewModels.MoviesViewModel.SingleMovieViewModel;
 import com.example.movie_mvvm.Utilities.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,7 +32,7 @@ public class SingleMovieActivity extends AppCompatActivity {
     TextView movie_title, movie_tagline, movie_rating, movie_overview, movie_runtime;
     ImageView movie_poster, cancel_item;
     FloatingActionButton home;
-    RecyclerView cast_rv;
+    RecyclerView cast_rv, rv_genre;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class SingleMovieActivity extends AppCompatActivity {
         movie_runtime=findViewById(R.id.tv_movie_runtime);
         home=findViewById(R.id.fab_home);
         cast_rv=findViewById(R.id.rv_cast_list);
+        rv_genre=findViewById(R.id.rv_genre);
         cancel_item=findViewById(R.id.cancel_movie_details);
 
         int movieId=getIntent().getIntExtra("id", 1);
@@ -52,9 +56,15 @@ public class SingleMovieActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager=new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
                 false);
 
+        GenreListAdapter genreListAdapter=new GenreListAdapter(this, movieId);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(this, 3);
+
         APIService apiService= new TheMovieDBClient().getClient();
         movieDetailsRepository = new DetailsRepository(apiService);
         SingleMovieViewModel viewModel = getViewModel(movieId);
+        GenreViewModel genreViewModel=getGenreViewModel(movieId);
+
+        genreViewModel.genreList.observe(this, genreListAdapter::submitList);
 
         viewModel.movieCast.observe(this, castListAdapter::submitList);
 
@@ -62,6 +72,19 @@ public class SingleMovieActivity extends AppCompatActivity {
 
         cast_rv.setLayoutManager(layoutManager);
         cast_rv.setAdapter(castListAdapter);
+
+        rv_genre.setLayoutManager(gridLayoutManager);
+        rv_genre.setAdapter(genreListAdapter);
+    }
+
+    private GenreViewModel getGenreViewModel(int movieID) {
+        return new ViewModelProvider(this, new ViewModelProvider.Factory() {
+            @NonNull
+            @Override
+            public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+                return (T) new GenreViewModel(movieDetailsRepository, movieID);
+            }
+        }).get(GenreViewModel.class);
     }
 
     @SuppressLint("SetTextI18n")

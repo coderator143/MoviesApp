@@ -2,6 +2,8 @@ package com.example.movie_mvvm.Entities.Movies;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class MovieDetails {
 
     private String runtime;
@@ -10,14 +12,17 @@ public class MovieDetails {
     private String tagline;
     private String title;
     @SerializedName("vote_average") double rating;
+    private List<Genres> genres;
 
-    public MovieDetails(String runtime, String overview, String posterPath, String tagline, String title, double rating) {
+    public MovieDetails(String runtime, String overview, String posterPath, String tagline, String title, double rating,
+                        List<Genres> genres) {
         this.runtime=runtime;
         this.overview=overview;
         this.posterPath=posterPath;
         this.tagline=tagline;
         this.title=title;
         this.rating=rating;
+        this.genres=genres;
     }
 
     //runtime
@@ -43,4 +48,8 @@ public class MovieDetails {
     //rating
     public double get_movie_rating() {return rating;}
     public void set_movie_rating(double rating) {this.rating=rating;}
+
+    //genres
+    public List<Genres> get_movie_genre_list() { return genres; }
+    public void set_movie_genre_list(List<Genres> genres) { this.genres=genres; }
 }

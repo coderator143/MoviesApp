@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.movie_mvvm.Entities.Movies.CastDetails;
+import com.example.movie_mvvm.Entities.Movies.Genres;
 import com.example.movie_mvvm.Entities.Movies.Movie;
 import com.example.movie_mvvm.Entities.Movies.MovieResponse;
 import com.example.movie_mvvm.NetworkServices.APIService;
@@ -28,6 +29,7 @@ public class MovieDetailsNetworkDataSource {
     private MutableLiveData<List<MovieCast>> _downloadedMovieCastResponse = new MutableLiveData<>();
     private MutableLiveData<List<Movie>> _downloadedHomePageMovieResponse = new MutableLiveData<>();
     private MutableLiveData<CastDetails> _downloadedCastDetailsResponse = new MutableLiveData<>();
+    private MutableLiveData<List<Genres>> _downloadedGenreListResponse = new MutableLiveData<>();
 
     public MovieDetailsNetworkDataSource(APIService apiService, CompositeDisposable compositeDisposable) {
         this.apiService=apiService;
@@ -42,6 +44,8 @@ public class MovieDetailsNetworkDataSource {
 
     public LiveData<CastDetails> get_DownloadedCastDetailsResponse() { return _downloadedCastDetailsResponse; }
 
+    public LiveData<List<Genres>> get_DownloadedGenreListResponse() { return _downloadedGenreListResponse; }
+
     public void fetch_movie_details(int movieID) {
         try {
             compositeDisposable.add(
@@ -51,6 +55,7 @@ public class MovieDetailsNetworkDataSource {
                         @Override
                         public void onSuccess(MovieDetails o) {
                             _downloadedMovieDetailsResponse.postValue(o);
+                            _downloadedGenreListResponse.postValue(o.get_movie_genre_list());
                         }
 
                         @Override

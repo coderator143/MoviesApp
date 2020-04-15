@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.movie_mvvm.Data.TvShowsData.TvShowsDetailsNetworkDataSource;
 import com.example.movie_mvvm.Entities.Movies.CastDetails;
+import com.example.movie_mvvm.Entities.Movies.Genres;
 import com.example.movie_mvvm.Entities.Movies.Movie;
 import com.example.movie_mvvm.Entities.TVShows.TVShow;
 import com.example.movie_mvvm.NetworkServices.APIService;
@@ -53,5 +54,11 @@ public class DetailsRepository {
         tvShowsDetailsNetworkDataSource=new TvShowsDetailsNetworkDataSource(apiService, compositeDisposable);
         tvShowsDetailsNetworkDataSource.fetch_homepage_tvShows();
         return tvShowsDetailsNetworkDataSource.get_DownloadedHomePageTvShowResponse();
+    }
+
+    public LiveData<List<Genres>> fetchingGenresListDetails(CompositeDisposable compositeDisposable, int movieId) {
+        movieDetailsNetworkDataSource=new MovieDetailsNetworkDataSource(apiService, compositeDisposable);
+        movieDetailsNetworkDataSource.fetch_movie_details(movieId);
+        return movieDetailsNetworkDataSource.get_DownloadedGenreListResponse();
     }
 }

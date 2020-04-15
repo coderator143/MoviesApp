@@ -78,8 +78,7 @@ public class CastDetailActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void bindUI(CastDetails castDetails) {
         cast_name.setText(castDetails.getCastDetailsName());
-        if(!castDetails.getCastDetailDepartment().equals("")) cast_department.setText("Mainly does "+
-                castDetails.getCastDetailDepartment());
+        if(!castDetails.getCastDetailDepartment().equals("")) cast_department.setText(castDetails.getCastDetailDepartment());
         else cast_department.setText("Dunno");
         if(!castDetails.getCastDetailBiography().equals("")) cast_bio.setText(castDetails.getCastDetailBiography());
         else cast_bio.setText("Search wikipedia. There you will find more than just a name");
