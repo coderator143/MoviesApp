@@ -22,7 +22,8 @@
             android:parentActivityName=".Activities.MovieActivities.PopularMoviesActivity"/>
         <activity android:name=".Activities.MovieActivities.PopularMoviesActivity"
             android:parentActivityName=".Activities.HomeActivity"/>
-        <activity android:name=".Activities.HomeActivity" >
+        <activity android:name=".Activities.HomeActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -28,6 +28,7 @@ public class SearchMoviesActivity extends AppCompatActivity {
     private PagedListRepository moviePagedListRepository;
     private PopularMoviePagedListAdapter movieAdapter;
     public String query;
+//    private TextView results;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -57,7 +58,7 @@ public class SearchMoviesActivity extends AppCompatActivity {
 
         create_movies_list();
 
-        //TextView results = findViewById(R.id.tv_results);
+//        results = findViewById(R.id.tv_results);
 
         RecyclerView rv_movie_list = findViewById(R.id.rv_search_movies);
         rv_movie_list.setLayoutManager(gridLayoutManager);
@@ -89,7 +90,6 @@ public class SearchMoviesActivity extends AppCompatActivity {
                 query=query1;
                 searchMoviesViewModel=new SearchMoviesViewModel(moviePagedListRepository, query);
                 create_movies_list();
-//                searchMoviesViewModel.totalResults.observe(SearchMoviesActivity.this, results::setText);
                 return false;
             }
 
@@ -108,6 +108,7 @@ public class SearchMoviesActivity extends AppCompatActivity {
         }).get(SearchMoviesViewModel.class);
     }
 
+    @SuppressLint("SetTextI18n")
     private void create_movies_list() {
         searchMoviesViewModel.searchMoviePagedList.observe(SearchMoviesActivity.this,
                 searched_movies -> movieAdapter.submitList(searched_movies));

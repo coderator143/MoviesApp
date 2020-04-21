@@ -57,19 +57,6 @@ public class HomeActivity extends AppCompatActivity {
         create_popular_movies_list();
         create_popular_tv_shows_list();
 
-        searchView = findViewById(R.id.sv_home);
-        t=findViewById(R.id.tv_home);
-        searchView.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-            if(searchView.isIconified()) {
-                t.setText("Home");
-                searchView.setBackgroundColor(getResources().getColor(R.color.toolbarcolor));
-            }
-            else {
-                t.setText("");
-                searchView.setBackgroundColor(getResources().getColor(R.color.white));
-            }
-        });
-
         RecyclerView rv_movie_list = findViewById(R.id.rv_list_twenty_popular_movies);
         rv_movie_list.setLayoutManager(layoutManager);
         rv_movie_list.setAdapter(movieAdapter);
@@ -83,6 +70,19 @@ public class HomeActivity extends AppCompatActivity {
 
         findViewById(R.id.tv_list_twenty_popular_tv_shows).setOnClickListener(v ->
                 startActivity(new Intent(HomeActivity.this, PopularTvShowsActivity.class)));
+
+        searchView = findViewById(R.id.sv_home);
+        t=findViewById(R.id.tv_home);
+        searchView.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+            if(searchView.isIconified()) {
+                t.setText("Home");
+                searchView.setBackgroundColor(getResources().getColor(R.color.toolbarcolor));
+            }
+            else {
+                t.setText("");
+                searchView.setBackgroundColor(getResources().getColor(R.color.white));
+            }
+        });
     }
 
     private TvShowHomepageViewModel getPopularTvShowViewModel() {

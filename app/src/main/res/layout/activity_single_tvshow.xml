@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapseActionView"
+                android:id="@+id/collapseActionView_tvshow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#1b1e23"
@@ -37,11 +37,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="600dp"
                         android:layout_gravity="center"
-                        android:id="@+id/iv_movie_poster"
-                        android:scaleType="center" />
+                        android:id="@+id/iv_tvshow_poster"
+                        android:scaleType="fitCenter" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/fab_home"
+                        android:id="@+id/fab_home_tvshow"
                         app:layout_constraintTop_toTopOf="parent"
                         android:elevation="2dp"
                         android:backgroundTint="#ff6600"
@@ -80,24 +80,12 @@
                     android:id="@+id/movie_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Movie"
+                    android:text="TV Show"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:textColor="#fff"
                     android:fontFamily="@font/montserrat_extra_bold"
                     android:textSize="32sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/movie_tagline"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:textColor="#fff"
-                    android:fontFamily="@font/open_sans_regular"
-                    android:text="No tagline here XD"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_genre"

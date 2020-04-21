@@ -6,6 +6,7 @@
     android:id="@+id/card_view"
     android:foreground="?selectableItemBackground"
     android:layout_marginStart="4dp"
+    android:background="#040200"
     android:layout_marginEnd="4dp"
     app:cardCornerRadius="16dp"
     android:layout_marginTop="4dp"
@@ -15,6 +16,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
+        android:background="#040200"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
@@ -22,7 +24,7 @@
             android:id="@+id/cv_iv_popular"
             android:layout_width="150dp"
             android:layout_height="225dp"
-            android:scaleType="centerCrop"
+            android:scaleType="center"
             android:layout_gravity="center"/>
 
     </LinearLayout>

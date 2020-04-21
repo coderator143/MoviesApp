@@ -8,7 +8,7 @@
     tools:context=".Activities.MovieActivities.SearchMoviesActivity">
 
     <LinearLayout
-        android:background="#1B1E23"
+        android:background="#040200"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -51,6 +51,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:id="@+id/sv_movies_search"
                         style="@style/SearchViewStyle"
+
                         android:layoutDirection="rtl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -66,6 +67,8 @@
 <!--        <TextView-->
 <!--            android:id="@+id/tv_results"-->
 <!--            android:textSize="12sp"-->
+<!--            android:text="11 results"-->
+<!--            android:textColor="#fff"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:fontFamily="@font/open_sans_regular"-->
@@ -76,7 +79,7 @@
 <!--        <View-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="2dp"-->
-<!--            android:background="#c0c0c0"/>-->
+<!--            android:background="#fff"/>-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_search_movies"
