@@ -75,6 +75,7 @@ public class PopularMoviesAdapter extends ListAdapter<Movie, PopularMoviesAdapte
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, SingleMovieActivity.class);
                 intent.putExtra("id", movie.get_id());
+                intent.putExtra("from", "home");
                 context.startActivity(intent);
             });
         }

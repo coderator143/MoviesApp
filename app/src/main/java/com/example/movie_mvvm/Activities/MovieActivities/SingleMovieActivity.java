@@ -1,9 +1,12 @@
 package com.example.movie_mvvm.Activities.MovieActivities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.example.movie_mvvm.Activities.HomeActivity;
 import com.example.movie_mvvm.Adapters.MovieAdapters.GenreListAdapter;
 import com.example.movie_mvvm.NetworkServices.TheMovieDBClient;
 import com.example.movie_mvvm.NetworkServices.APIService;
@@ -33,6 +37,7 @@ public class SingleMovieActivity extends AppCompatActivity {
     ImageView movie_poster, cancel_item;
     FloatingActionButton home;
     RecyclerView cast_rv, rv_genre;
+    private String from;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +57,9 @@ public class SingleMovieActivity extends AppCompatActivity {
 
         int movieId=getIntent().getIntExtra("id", 1);
 
-        CastListAdapter castListAdapter=new CastListAdapter(this, movieId);
+        from = getIntent().getStringExtra("from");
+
+        CastListAdapter castListAdapter=new CastListAdapter(this, movieId, from);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
                 false);
 
@@ -87,6 +94,9 @@ public class SingleMovieActivity extends AppCompatActivity {
         }).get(GenreViewModel.class);
     }
 
+    @Override
+    public void onBackPressed() { gotoParentActivity(); }
+
     @SuppressLint("SetTextI18n")
     private void bindUI(MovieDetails movieDetails) {
         movie_title.setText(movieDetails.get_movie_title());
@@ -113,8 +123,8 @@ public class SingleMovieActivity extends AppCompatActivity {
                 .into(movie_poster);
         else movie_poster.setImageResource(R.drawable.thinking);
 
-        home.setOnClickListener(v -> finish());
-        cancel_item.setOnClickListener(v -> finish());
+        home.setOnClickListener(v -> gotoParentActivity());
+        cancel_item.setOnClickListener(v -> gotoParentActivity());
     }
 
     private SingleMovieViewModel getViewModel(final int movieId) {
@@ -125,5 +135,14 @@ public class SingleMovieActivity extends AppCompatActivity {
                 return (T) new SingleMovieViewModel(movieDetailsRepository, movieId);
             }
         }).get(SingleMovieViewModel.class);
+    }
+
+    private void gotoParentActivity() {
+        if(from != null) {
+            if(from.equals("home")) startActivity(new Intent(this, HomeActivity.class));
+            else startActivity(new Intent(this, PopularMoviesActivity.class));
+            finish();
+        }
+        else Toast.makeText(this, "from == null", Toast.LENGTH_SHORT).show();
     }
 }

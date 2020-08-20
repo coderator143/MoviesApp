@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,11 +26,13 @@ public class CastListAdapter extends ListAdapter<MovieCast, CastListAdapter.Cast
 
     private Context context;
     private int movieID;
+    private String from;
 
-    public CastListAdapter(Context context, int movieID) {
+    public CastListAdapter(Context context, int movieID, String from) {
         super(DIFF_CALLBACK);
         this.context=context;
         this.movieID=movieID;
+        this.from = from;
     }
 
     private static final DiffUtil.ItemCallback<MovieCast>DIFF_CALLBACK=
@@ -55,6 +58,7 @@ public class CastListAdapter extends ListAdapter<MovieCast, CastListAdapter.Cast
 
     @Override
     public void onBindViewHolder(@NonNull CastListHolder holder, int position) {
+        holder.itemView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.down_to_up));
         holder.bind(getItem(position));
     }
 
@@ -86,8 +90,9 @@ public class CastListAdapter extends ListAdapter<MovieCast, CastListAdapter.Cast
                 Intent intent=new Intent(context, CastDetailActivity.class);
                 intent.putExtra("castID", movieCast.getCastId());
                 intent.putExtra("id", movieID);
+                intent.putExtra("from", from);
                 context.startActivity(intent);
-                ((Activity) context).finish();
+                //((Activity) context).finish();
             });
         }
     }

@@ -93,8 +93,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:textColor="#fff"
-                android:text="Search wikipedia. There you will find more than just a
-                        name."
+                android:text="Description about actor unavailable"
                 android:textSize="14sp"
                 android:fontFamily="@font/open_sans_regular"
                 android:layout_marginBottom="40dp"/>

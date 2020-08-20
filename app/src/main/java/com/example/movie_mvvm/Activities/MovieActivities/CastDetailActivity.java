@@ -31,9 +31,14 @@ public class CastDetailActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     @Override
+    public void onBackPressed() { finish(); }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cast_details);
+
+        String from = getIntent().getStringExtra("from");
 
         cast_name=findViewById(R.id.tv_cast_detail_title);
         cast_department=findViewById(R.id.tv_cast_detail_department);
@@ -54,6 +59,7 @@ public class CastDetailActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(v -> {
             Intent intent=new Intent(CastDetailActivity.this, SingleMovieActivity.class);
             intent.putExtra("id", movieID);
+            intent.putExtra("from", from);
             startActivity(intent);
             finish();
         });
